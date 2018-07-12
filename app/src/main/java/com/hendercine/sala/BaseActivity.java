@@ -8,6 +8,9 @@
 
 package com.hendercine.sala;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -43,5 +46,15 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public void showToast(int resId) {
         Toast.makeText(getApplicationContext(), resId, Toast.LENGTH_SHORT).show();
+    }
+
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = null;
+        if (connectivityManager != null) {
+            activeNetwork = connectivityManager.getActiveNetworkInfo();
+        }
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 }
