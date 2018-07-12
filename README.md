@@ -1,0 +1,2 @@
+# SundayAssemblyLosAngeles-1.1
+Version 1.1 of an app for the Sunday Assembly community. Intended to help immerse assemblers into the Assembly with the program schedule, song lyrics and speaker profiles. It also enables assemblers to connect with each other and Sunday Assembly organizers in between assemblies, with notifications about service and social events and a "calendar of events" widget. Separate repo created in order to establish a more stable architecture and reset the Firebase keys.
