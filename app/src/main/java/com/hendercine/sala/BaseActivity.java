@@ -10,7 +10,10 @@ package com.hendercine.sala;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
+
 import timber.log.Timber;
 
 /**
@@ -24,5 +27,21 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
         }
+    }
+
+    public void showSnackBar(int resId) {
+        Snackbar.make(
+                findViewById(android.R.id.content),
+                resId,
+                Snackbar.LENGTH_SHORT
+        ).show();
+    }
+
+    public void showToast(String msg) {
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public void showToast(int resId) {
+        Toast.makeText(getApplicationContext(), resId, Toast.LENGTH_SHORT).show();
     }
 }
