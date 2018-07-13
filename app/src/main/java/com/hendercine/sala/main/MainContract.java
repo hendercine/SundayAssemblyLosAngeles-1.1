@@ -6,7 +6,7 @@
  * Last modified 7/12/18 4:40 PM
  */
 
-package com.hendercine.sala;
+package com.hendercine.sala.main;
 
 import com.hendercine.sala.base.BaseMvpPresenter;
 import com.hendercine.sala.base.BaseView;

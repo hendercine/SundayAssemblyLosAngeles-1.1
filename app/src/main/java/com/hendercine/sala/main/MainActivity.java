@@ -1,9 +1,10 @@
-package com.hendercine.sala;
+package com.hendercine.sala.main;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.TextView;
 
+import com.hendercine.sala.R;
 import com.hendercine.sala.base.BaseActivity;
 
 import butterknife.BindView;
