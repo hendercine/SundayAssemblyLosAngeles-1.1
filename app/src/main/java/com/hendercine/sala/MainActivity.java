@@ -6,13 +6,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements MainContract.View,
-                                                          View.OnClickListener{
+public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
 
     @BindView(R.id.tvHello)
     TextView mTextView;
-    private MainPresenter mPresenter;
 
     @Override
     protected int getContentResource() {
@@ -21,16 +20,12 @@ public class MainActivity extends BaseActivity implements MainContract.View,
 
     @Override
     protected void init(@Nullable Bundle savedInstanceState) {
-        mTextView.setOnClickListener(this);
-        mPresenter = new MainPresenter();
-        mPresenter.attach(this);
-        mPresenter.loadHelloText();
+        getPresenter().loadHelloText();
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mPresenter.detach();
+    protected void injectDependencies() {
+        getActivityComponent().inject(this);
     }
 
     @Override
@@ -39,9 +34,9 @@ public class MainActivity extends BaseActivity implements MainContract.View,
 
     }
 
-    @Override
-    public void onClick(View v) {
-        mPresenter.loadHelloText();
+    @OnClick(R.id.tvHello)
+    public void onClick() {
+        getPresenter().loadHelloText();
     }
 
 }
