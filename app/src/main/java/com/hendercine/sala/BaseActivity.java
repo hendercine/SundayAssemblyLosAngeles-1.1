@@ -18,30 +18,38 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import javax.inject.Inject;
+
+import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import timber.log.Timber;
 
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/12/18.
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity<T extends BaseMvpPresenter>
+        extends AppCompatActivity implements BaseView {
 
+    @Inject
+    T mPresenter;
+    private ActivityComponent mActivityComponent;
     private Unbinder mUnbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentResource());
-        init(savedInstanceState);
+        ButterKnife.bind(this);
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
         }
+        mActivityComponent = DaggerActivityComponent.builder()
+                .activityModule(new ActivityModule(this))
+                .build();
+        injectDependencies();
+        mPresenter.attach(this);
+        init(savedInstanceState);
     }
-
-    @LayoutRes
-    protected abstract int getContentResource();
-
-    protected abstract void init(@Nullable Bundle savedInstanceState);
 
     @Override
     protected void onDestroy() {
@@ -49,7 +57,23 @@ public abstract class BaseActivity extends AppCompatActivity {
             mUnbinder.unbind();
         }
         super.onDestroy();
+        mPresenter.detach();
     }
+
+    public ActivityComponent getActivityComponent() {
+        return mActivityComponent;
+    }
+
+    public T getPresenter() {
+        return mPresenter;
+    }
+
+    @LayoutRes
+    protected abstract int getContentResource();
+
+    protected abstract void init(@Nullable Bundle savedInstanceState);
+
+    protected abstract void injectDependencies();
 
     public void setUnbinder(Unbinder unbinder) {
         mUnbinder = unbinder;
