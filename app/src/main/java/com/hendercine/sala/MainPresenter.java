@@ -8,6 +8,8 @@
 
 package com.hendercine.sala;
 
+import com.hendercine.sala.base.BasePresenter;
+
 import java.util.Random;
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/12/18.

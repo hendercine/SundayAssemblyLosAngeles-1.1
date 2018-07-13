@@ -8,12 +8,15 @@
 
 package com.hendercine.sala;
 
+import com.hendercine.sala.base.BaseMvpPresenter;
+import com.hendercine.sala.base.BaseView;
+
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/12/18.
  */
 public interface MainContract {
 
-    interface Presenter extends BaseMvpPresenter<MainContract.View> {
+    interface Presenter extends BaseMvpPresenter<View> {
 
         void loadHelloText();
 
