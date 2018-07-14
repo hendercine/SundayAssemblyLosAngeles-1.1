@@ -2,7 +2,7 @@ package com.hendercine.sala.di.module;
 
 import android.content.Context;
 
-import com.hendercine.sala.ChromeTabsWrapper;
+import com.hendercine.sala.chrome.ChromeTabsWrapper;
 import com.hendercine.sala.main.MainContract;
 import com.hendercine.sala.main.MainPresenter;
 
