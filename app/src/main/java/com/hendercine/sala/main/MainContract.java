@@ -14,18 +14,17 @@ import com.hendercine.sala.base.BaseView;
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/12/18.
  */
+
 public interface MainContract {
 
+    // User actions. Presenter will implement
     interface Presenter extends BaseMvpPresenter<View> {
-
         void loadHelloText();
-
     }
 
-
+    // Action callbacks. Activity/Fragment will implement
     interface View extends BaseView {
-
         void onTextLoaded(String text);
-
     }
+
 }

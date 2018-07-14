@@ -10,6 +10,8 @@ package com.hendercine.sala.base;
 
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/12/18.
+ *
+ * Each view should extend from this interface
  */
 public interface BaseView {
 

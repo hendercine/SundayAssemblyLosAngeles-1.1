@@ -21,7 +21,7 @@ public class ActivityModule {
     private Context mContext;
 
     public ActivityModule(Context context) {
-        this.mContext = context;
+        mContext = context;
     }
 
     @Provides
@@ -35,4 +35,5 @@ public class ActivityModule {
     MainContract.Presenter providesMainPresenter() {
         return new MainPresenter();
     }
+
 }
