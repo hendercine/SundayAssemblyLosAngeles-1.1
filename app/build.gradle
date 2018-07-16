@@ -12,8 +12,22 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+            proguardFile '/Users/hendercine/version_control/SundayAssemblyLosAngeles-1.1/app/proguard-rules.pro'
+            applicationIdSuffix '.release'
+            versionNameSuffix '-REL'
+        }
+        debug {
+            debuggable true
+            jniDebuggable false
+            renderscriptDebuggable false
+            minifyEnabled false
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-DEBUG'
         }
     }
 }
@@ -41,6 +55,8 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.16'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.16'
     implementation 'org.glassfish:javax.annotation:10.0-b28'
+    // LeakCanary
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     // Testing Dependencies
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
