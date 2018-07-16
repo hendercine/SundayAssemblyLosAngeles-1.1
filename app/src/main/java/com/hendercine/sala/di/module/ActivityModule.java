@@ -12,7 +12,9 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Created by James Henderson on 7/13/18.
+ * Created by James Henderson on 7/13/18. MVP
+ * structure code sourced from https://medium.com/android-bits
+ * /android-app-from-scratch-part-1-model-view-presenter-b5f629f2d9a1
  */
 
 @Module

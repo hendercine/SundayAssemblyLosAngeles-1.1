@@ -7,7 +7,9 @@ import android.support.customtabs.CustomTabsServiceConnection;
 import java.lang.ref.WeakReference;
 
 /**
- * SundayAssemblyLosAngeles-1.1 created by artemis on 7/13/18.
+ * SundayAssemblyLosAngeles-1.1 created by artemis on 7/13/18. MVP
+ * structure code sourced from https://medium.com/android-bits
+ * /android-app-from-scratch-part-1-model-view-presenter-b5f629f2d9a1
  */
 public class ServiceConnection extends CustomTabsServiceConnection {
 
