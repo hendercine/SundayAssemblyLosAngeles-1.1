@@ -6,7 +6,7 @@
  * Last modified 7/12/18 4:17 PM
  */
 
-package com.hendercine.sala;
+package com.hendercine.sala.base;
 
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/12/18.
@@ -18,7 +18,6 @@ public class BasePresenter<V extends BaseView> implements BaseMvpPresenter<V> {
     @Override
     public void attach(V view) {
         mView = view;
-
     }
 
     @Override

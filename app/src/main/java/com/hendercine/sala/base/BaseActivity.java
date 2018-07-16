@@ -6,7 +6,7 @@
  * Last modified 7/12/18 1:08 PM
  */
 
-package com.hendercine.sala;
+package com.hendercine.sala.base;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -18,31 +18,35 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.hendercine.sala.di.component.ActivityComponent;
+import com.hendercine.sala.di.component.DaggerActivityComponent;
+import com.hendercine.sala.di.module.ActivityModule;
+
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
-import timber.log.Timber;
 
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/12/18.
  */
-public abstract class BaseActivity<T extends BaseMvpPresenter>
-        extends AppCompatActivity implements BaseView {
+public abstract class BaseActivity<T extends BaseMvpPresenter> extends AppCompatActivity implements BaseView {
 
+    /**
+     * Injected presenter
+     */
     @Inject
     T mPresenter;
+
     private ActivityComponent mActivityComponent;
-    private Unbinder mUnbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentResource());
         ButterKnife.bind(this);
-        if (BuildConfig.DEBUG) {
-            Timber.plant(new Timber.DebugTree());
-        }
+//        if (BuildConfig.DEBUG) {
+//            Timber.plant(new Timber.DebugTree());
+//        }
         mActivityComponent = DaggerActivityComponent.builder()
                 .activityModule(new ActivityModule(this))
                 .build();
@@ -51,11 +55,14 @@ public abstract class BaseActivity<T extends BaseMvpPresenter>
         init(savedInstanceState);
     }
 
+    /**
+     * Detach presenter
+     */
     @Override
     protected void onDestroy() {
-        if (mUnbinder != null) {
-            mUnbinder.unbind();
-        }
+//        if (mUnbinder != null) {
+//            mUnbinder.unbind();
+//        }
         super.onDestroy();
         mPresenter.detach();
     }
@@ -64,20 +71,36 @@ public abstract class BaseActivity<T extends BaseMvpPresenter>
         return mActivityComponent;
     }
 
+    /**
+     * Getter for the presenter
+     *
+     * @return the present for the activity
+     */
     public T getPresenter() {
         return mPresenter;
     }
 
+    /**
+     * Layout resource to be inflated
+     *
+     * @return layout resource
+     */
     @LayoutRes
     protected abstract int getContentResource();
 
-    protected abstract void init(@Nullable Bundle savedInstanceState);
+    /**
+     * Initializations
+     */
+    protected abstract void init(@Nullable Bundle state);
 
+    /**
+     * Injecting dependencies
+     */
     protected abstract void injectDependencies();
 
-    public void setUnbinder(Unbinder unbinder) {
-        mUnbinder = unbinder;
-    }
+//    public void setUnbinder(Unbinder unbinder) {
+//        mUnbinder = unbinder;
+//    }
 
     public void showSnackBar(int resId) {
         Snackbar.make(
