@@ -9,6 +9,12 @@
 package com.hendercine.sala.rss;
 
 import com.hendercine.sala.base.BasePresenter;
+import com.hendercine.sala.model.Feed;
+import com.hendercine.sala.model.RError;
+import com.hendercine.sala.model.RssItem;
+import com.hendercine.sala.session.SessionData;
+
+import java.util.List;
 
 import javax.inject.Inject;
 

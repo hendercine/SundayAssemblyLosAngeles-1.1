@@ -10,6 +10,7 @@ package com.hendercine.sala.rss;
 
 import com.hendercine.sala.base.BaseMvpPresenter;
 import com.hendercine.sala.base.BaseView;
+import com.hendercine.sala.model.RssItem;
 
 import java.util.List;
 /**

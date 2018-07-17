@@ -19,6 +19,11 @@ import android.widget.TextView;
 
 import com.hendercine.sala.R;
 import com.hendercine.sala.base.BaseFragment;
+import com.hendercine.sala.model.Feed;
+import com.hendercine.sala.model.RError;
+import com.hendercine.sala.model.RssItem;
+
+import java.util.List;
 
 import butterknife.BindView;
 

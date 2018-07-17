@@ -8,6 +8,8 @@
 
 package com.hendercine.sala.session;
 
+import com.hendercine.sala.model.RssItem;
+
 import java.util.HashMap;
 import java.util.List;
 
