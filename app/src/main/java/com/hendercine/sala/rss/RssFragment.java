@@ -3,10 +3,10 @@
  * Copyright (c) Hendercine Productions and James Henderson 2018.
  * All rights reserved.
  *
- * Last modified 7/16/18 5:22 PM
+ * Last modified 7/16/18 5:41 PM
  */
 
-package com.hendercine.sala;
+package com.hendercine.sala.rss;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.hendercine.sala.R;
 import com.hendercine.sala.base.BaseFragment;
 
 import butterknife.BindView;
