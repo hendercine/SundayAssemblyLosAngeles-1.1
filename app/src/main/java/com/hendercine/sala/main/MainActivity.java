@@ -8,6 +8,9 @@ import com.hendercine.sala.R;
 import com.hendercine.sala.base.BaseActivity;
 import com.hendercine.sala.chrome.ChromeTabsWrapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -30,7 +33,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void init(@Nullable Bundle state) {
-        getPresenter().loadHelloText();
+        getPresenter().loadRssFragments();
     }
 
     @Override
@@ -38,15 +41,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         getActivityComponent().inject(this);
     }
 
-
-    @Override
-    public void onTextLoaded(String text) {
-        mTextView.setText(text);
-    }
-
     @OnClick(R.id.tvHello)
     public void onClick() {
-        getPresenter().loadHelloText();
+        getPresenter().loadRssFragments();
     }
 
     @Override
@@ -59,5 +56,23 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     protected void onDestroy() {
         super.onDestroy();
         mChromeTabsWrapper.unbindCustomTabsService();
+    }
+
+    @Override
+    public void onLoadRssFragments() {
+
+    }
+
+    public void setUpViewPager() {
+        List<RssFragment> fragmentList = new ArrayList<>();
+        List<String> titles = new ArrayList<>();
+        for (Feed feed : new FeedParser().parseFeeds(this)) {
+            fragmentList.add(RssFragment.newInstance(feed));
+            titles.add(feed.getTitle());
+        }
+
+        RssFragmentAdapter adapter = new RssFragmentAdapter
+                (getSupportFragmentManager(), fragmentList, titles);
+        mViewPager.setAdapter(adapter);
     }
 }
