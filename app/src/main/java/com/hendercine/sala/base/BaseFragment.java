@@ -23,7 +23,8 @@ import javax.inject.Inject;
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/16/18.
  */
-public abstract class BaseFragment<T extends BaseMvpPresenter> extends Fragment implements BaseView {
+public abstract class BaseFragment<T extends BaseMvpPresenter> extends android.support.v4.app.Fragment
+        implements BaseView {
 
     @Inject
     T mPresenter;
