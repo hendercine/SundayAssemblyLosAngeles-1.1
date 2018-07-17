@@ -10,8 +10,6 @@ package com.hendercine.sala.main;
 
 import com.hendercine.sala.base.BasePresenter;
 
-import java.util.Random;
-
 import javax.inject.Inject;
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/12/18. MVP
@@ -21,18 +19,14 @@ import javax.inject.Inject;
 public class MainPresenter extends BasePresenter<MainContract.View>
         implements MainContract.Presenter {
 
-    private String[] helloTexts = {"BONJOUR", "HOLA", "HALLO", "MERHABA",
-            "HELLO", "CIAO", "KONNICHIWA"};
 
     @Inject
     public MainPresenter() {
     }
 
     @Override
-    public void loadHelloText() {
-        Random random = new Random();
-        String hello = helloTexts[random.nextInt(helloTexts.length)];
-        getView().onTextLoaded(hello);
+    public void loadRssFragments() {
+        getView().onLoadRssFragments();
 
     }
 }
