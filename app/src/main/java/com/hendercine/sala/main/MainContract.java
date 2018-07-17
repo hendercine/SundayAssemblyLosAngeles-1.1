@@ -20,13 +20,13 @@ import com.hendercine.sala.base.BaseView;
 public interface MainContract {
 
     // User actions. Presenter will implement
-    interface Presenter extends BaseMvpPresenter<View> {
-        void loadHelloText();
+    interface Presenter extends BaseMvpPresenter<MainContract.View> {
+        void loadRssFragments();
     }
 
     // Action callbacks. Activity/Fragment will implement
     interface View extends BaseView {
-        void onTextLoaded(String text);
+        void onLoadRssFragments();
     }
 
 }
