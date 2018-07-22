@@ -17,7 +17,7 @@ android {
             debuggable false
             jniDebuggable false
             renderscriptDebuggable false
-            proguardFile '/Users/hendercine/version_control/SundayAssemblyLosAngeles-1.1/app/proguard-rules.pro'
+            proguardFile 'app/proguard-rules.pro'
             applicationIdSuffix '.release'
             versionNameSuffix '-REL'
         }
