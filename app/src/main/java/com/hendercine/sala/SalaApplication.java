@@ -1,3 +1,5 @@
+package com.hendercine.sala;
+
 import android.app.Application;
 
 /**
