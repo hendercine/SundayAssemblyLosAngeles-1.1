@@ -8,6 +8,7 @@
 
 package com.hendercine.sala.rss;
 
+import com.hendercine.sala.base.AsyncCallbackView;
 import com.hendercine.sala.base.BaseMvpPresenter;
 import com.hendercine.sala.base.BaseView;
 import com.hendercine.sala.model.RssItem;
@@ -26,7 +27,7 @@ public interface RssContract {
     }
 
     // Action callbacks. Activity/Fragment will implement
-    interface View extends BaseView, AsyncCallBackView {
+    interface View extends BaseView, AsyncCallbackView {
 
         void onRssItemsLoaded(List<RssItem> rssItems);
 
