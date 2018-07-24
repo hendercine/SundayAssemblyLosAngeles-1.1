@@ -10,7 +10,13 @@ package com.hendercine.sala;
 
 import android.app.Application;
 
+import com.hendercine.sala.di.component.ApplicationComponent;
+import com.hendercine.sala.di.component.DaggerActivityComponent;
+import com.hendercine.sala.di.module.ApplicationModule;
+import com.hendercine.sala.session.SessionData;
 import com.squareup.leakcanary.LeakCanary;
+
+import javax.inject.Inject;
 
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/16/18.
@@ -68,10 +74,27 @@ public class SalaApplication extends Application {
     // TODO: Modify strings.xml to conform to best practices
     // TODO: Modify xml layout files to conform to best practices
 
+    private ApplicationComponent mApplicationComponent;
+
+    @Inject
+    SessionData mSessionData;
+
     @Override
     public void onCreate() {
         super.onCreate();
         LeakCanary.install(this);
+
+        mApplicationComponent = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this))
+                .build();
+        mApplicationComponent.inject(this);
     }
 
+    public ApplicationComponent getApplicationComponent() {
+        return mApplicationComponent;
+    }
+
+    public SessionData getSessionData() {
+        return mSessionData;
+    }
 }
