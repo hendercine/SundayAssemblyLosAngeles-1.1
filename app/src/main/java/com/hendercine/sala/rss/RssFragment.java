@@ -38,10 +38,8 @@ public class RssFragment extends BaseFragment<RssPresenter> implements
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
-
     @BindView(R.id.swRefresh)
     SwipeRefreshLayout mSwRefresh;
-
     @BindView(R.id.tvNoItems)
     TextView mTvNoItems;
 
@@ -60,7 +58,9 @@ public class RssFragment extends BaseFragment<RssPresenter> implements
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mFeed = (Feed) getArguments().getSerializable(KEY_FEED);
+        if (getArguments() != null) {
+            mFeed = (Feed) getArguments().getSerializable(KEY_FEED);
+        }
     }
 
     @Override
@@ -70,7 +70,7 @@ public class RssFragment extends BaseFragment<RssPresenter> implements
 
     @Override
     protected void init(@Nullable Bundle state) {
-        mAdapter = RssItemsAdapter(getActivity());
+        mAdapter = new RssItemsAdapter(getActivity());
         mAdapter.setListener(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mAdapter);
@@ -81,7 +81,6 @@ public class RssFragment extends BaseFragment<RssPresenter> implements
 
     @Override
     protected void injectDependencies() {
-
         getFragmentComponent().inject(this);
 
     }

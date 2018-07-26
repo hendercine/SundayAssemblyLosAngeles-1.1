@@ -13,7 +13,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,13 +34,13 @@ public class RssItemsAdapter extends RecyclerView.Adapter<RssItemsAdapter
 
     private final Context mContext;
     private final List<RssItem> mItems = new ArrayList<>();
-    private AdapterView.OnItemClickListener mListener;
+    private OnItemClickListener mListener;
 
     public RssItemsAdapter(Context context) {
         mContext = context;
     }
 
-    public void setListener(AdapterView.OnItemClickListener listener) {
+    public void setListener(OnItemClickListener listener) {
         this.mListener = listener;
     }
 
@@ -64,6 +63,12 @@ public class RssItemsAdapter extends RecyclerView.Adapter<RssItemsAdapter
     @Override
     public int getItemCount() {
         return 0;
+    }
+
+    interface OnItemClickListener {
+
+        void onItemSelected(RssItem rssItem);
+
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
