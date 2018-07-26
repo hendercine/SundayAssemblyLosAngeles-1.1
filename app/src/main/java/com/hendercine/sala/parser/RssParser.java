@@ -16,6 +16,8 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.ArrayList;
 
+import timber.log.Timber;
+
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/23/18.
  */
@@ -67,6 +69,51 @@ public class RssParser extends DefaultHandler {
             String url = attributes.getValue("url");
             if (url != null && !url.isEmpty()) {
                 mTempImage = url;
+            }
+        }
+    }
+
+    @Override
+    public void endElement(String uri, String localName, String qName) throws SAXException {
+        mElementOn = false;
+        // Sets the values after retrieving them from the XML tags
+        if (mRssItem != null) {
+            if (localName.equalsIgnoreCase("item")) {
+                mRssItem = new RssItem();
+                mRssItem.setTitle(mTempTitle.trim());
+                mRssItem.setUrl(mTempLink);
+                mRssItem.setImageUrl(mTempImage);
+                mRssItem.setPubdate(mTempPubdate);
+                mRssItem.setDescription(mTempDescription);
+                if (mTempImage == null && mTempDescription != null &&
+                        getImageSourceFromDescription(mTempDescription) != null) {
+                    mRssItem.setImageUrl(getImageSourceFromDescription(mTempDescription));
+                }
+                mItems.add(mRssItem);
+                mTempLink = "";
+                mTempImage = null;
+                mTempPubdate = "";
+                Timber.v("pended: %s", mTempTitle);
+            } else if (localName.equalsIgnoreCase("Title") && !qName
+                    .contains("media")) {
+                mParsingTitle = false;
+                mElementValue = "";
+                mTempTitle = mTempTitle.replace("\n", "");
+            } else if (localName.equalsIgnoreCase("link") && !mElementValue
+                    .isEmpty()) {
+                mParsingLink = false;
+                mElementValue = "";
+                mTempLink = mTempLink.replace("\n", "");
+            } else if (localName.equalsIgnoreCase("image") || localName
+                    .equalsIgnoreCase("url")) {
+                if (mElementValue != null && !mElementValue.isEmpty()) {
+                    mTempImage = mElementValue;
+                }
+            } else if (localName.equals("pubDate")) {
+                mTempPubdate = mElementValue;
+            } else if (localName.equals("description")) {
+                mParsingDesc = false;
+                mElementValue = "";
             }
         }
     }
