@@ -8,6 +8,7 @@
 
 package com.hendercine.sala.base;
 
+import com.hendercine.sala.model.RError;
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/12/18. MVP
  * structure code sourced from https://medium.com/android-bits
@@ -16,5 +17,7 @@ package com.hendercine.sala.base;
  * Each view should extend from this interface
  */
 public interface BaseView {
+
+    void onFail(RError error);
 
 }

@@ -11,6 +11,7 @@ package com.hendercine.sala.rss;
 import com.hendercine.sala.base.AsyncCallbackView;
 import com.hendercine.sala.base.BaseMvpPresenter;
 import com.hendercine.sala.base.BaseView;
+import com.hendercine.sala.model.Feed;
 import com.hendercine.sala.model.RssItem;
 
 import java.util.List;
@@ -23,7 +24,8 @@ public interface RssContract {
 
     // User actions. Presenter will implement
     interface Presenter extends BaseMvpPresenter<RssContract.View> {
-
+        void loadRssItems(Feed feed, boolean fromCache);
+        void browseRssUrl(RssItem rssItem);
     }
 
     // Action callbacks. Activity/Fragment will implement
