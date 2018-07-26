@@ -2,11 +2,16 @@ package com.hendercine.sala.main;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.TextView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 
 import com.hendercine.sala.R;
 import com.hendercine.sala.base.BaseActivity;
 import com.hendercine.sala.chrome.ChromeTabsWrapper;
+import com.hendercine.sala.model.Feed;
+import com.hendercine.sala.model.RssItem;
+import com.hendercine.sala.rss.RssFragment;
+import com.hendercine.sala.rss.RssFragmentAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,15 +21,21 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
+public class MainActivity extends BaseActivity<MainContract.Presenter> implements
+                                                                       MainContract
+                                                                               .View,
+                                                                       RssFragment.OnItemSelectListener {
 
 
-    @BindView(R.id.tvHello)
-    TextView mTextView;
+    @BindView(R.id.viewPager)
+    ViewPager mViewPager;
+    @BindView(R.id.tablayout)
+    TabLayout mTabLayout;
+    @BindView(R.id.toolbar)
+    android.support.v7.widget.Toolbar mToolbar;
 
     @Inject
     ChromeTabsWrapper mChromeTabsWrapper;
-
 
     @Override
     protected int getContentResource() {
@@ -33,6 +44,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void init(@Nullable Bundle state) {
+        setSupportActionBar(mToolbar);
+        mTabLayout.setupWithViewPager(mViewPager);
+        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         getPresenter().loadRssFragments();
     }
 
@@ -41,9 +55,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         getActivityComponent().inject(this);
     }
 
-    @OnClick(R.id.tvHello)
-    public void onClick() {
-        getPresenter().loadRssFragments();
+
+    @Override
+    public void onLoadRssFragments() {
+        setUpViewPager();
     }
 
     @Override
@@ -53,14 +68,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
         mChromeTabsWrapper.unbindCustomTabsService();
     }
 
     @Override
-    public void onLoadRssFragments() {
-
+    public void onItemSelected(RssItem rssItem) {
+        mChromeTabsWrapper.openCustomTab(rssItem.getUrl());
     }
 
     public void setUpViewPager() {
