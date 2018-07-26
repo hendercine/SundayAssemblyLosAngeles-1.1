@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Sala_1_1</string>
+    <string name="err_rss_no_item">An error occurred. Please swipe down to
+        refresh.</string>
 </resources>
