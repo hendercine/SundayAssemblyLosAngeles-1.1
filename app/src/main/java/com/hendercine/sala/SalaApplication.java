@@ -47,7 +47,6 @@ public class SalaApplication extends Application {
     // TODO: Copy or recreate xml layout files from Version 1.0
 
     // Architecture (Must be completed in order):
-    // TODO: Complete building the MVP structure based on the blog listed above
     // (on mvp branch)
     // TODO: Refactor "Rss" to become the SALA Main/"Home" activity
     // TODO: Merge mvp into master
