@@ -70,7 +70,7 @@ public class RssPresenter extends BasePresenter<RssContract.View> implements
     public void onFail(String rssUrl) {
         if (isAttached()) {
             getView().hideLoading();
-            getView().onFail(new RError("Failed to RSS!"));
+            getView().onFail(new RError("Failed to fetch RSS!"));
         }
     }
 
