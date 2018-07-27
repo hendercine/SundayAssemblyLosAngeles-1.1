@@ -73,4 +73,8 @@ public class RssPresenter extends BasePresenter<RssContract.View> implements
             getView().onFail(new RError("Failed to RSS!"));
         }
     }
+
+    public SessionData getSessionData() {
+        return mSessionData;
+    }
 }
