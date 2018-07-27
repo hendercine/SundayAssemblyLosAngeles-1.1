@@ -8,7 +8,6 @@
 
 package com.hendercine.sala.base;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -16,15 +15,22 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.widget.Toast;
+
+import com.hendercine.sala.di.component.DaggerFragmentComponent;
+import com.hendercine.sala.di.component.FragmentComponent;
+import com.hendercine.sala.di.module.FragmentModule;
+import com.hendercine.sala.model.RError;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
 
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/16/18.
  */
-public abstract class BaseFragment<T extends BaseMvpPresenter> extends android.support.v4.app.Fragment
-        implements BaseView {
+public abstract class BaseFragment<T extends BaseMvpPresenter> extends Fragment implements BaseView {
 
     @Inject
     T mPresenter;
@@ -64,18 +70,18 @@ public abstract class BaseFragment<T extends BaseMvpPresenter> extends android.s
 
     public void showSnackBar(int resId) {
         Snackbar.make(
-                getActivity().findViewById(android.R.id.content),
+                Objects.requireNonNull(getActivity()).findViewById(android.R.id.content),
                 resId,
                 Snackbar.LENGTH_SHORT
         ).show();
     }
 
     public void showToast(String msg) {
-        Toast.makeText(getActivity().getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(Objects.requireNonNull(getActivity()).getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
     public void showToast(int resId) {
-        Toast.makeText(getActivity().getApplicationContext(), resId, Toast.LENGTH_SHORT).show();
+        Toast.makeText(Objects.requireNonNull(getActivity()).getApplicationContext(), resId, Toast.LENGTH_SHORT).show();
     }
 
     public static boolean isNetworkAvailable(Context context) {

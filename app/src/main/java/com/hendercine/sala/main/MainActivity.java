@@ -9,9 +9,11 @@ import com.hendercine.sala.R;
 import com.hendercine.sala.base.BaseActivity;
 import com.hendercine.sala.chrome.ChromeTabsWrapper;
 import com.hendercine.sala.model.Feed;
+import com.hendercine.sala.model.RError;
 import com.hendercine.sala.model.RssItem;
 import com.hendercine.sala.rss.RssFragment;
 import com.hendercine.sala.rss.RssFragmentAdapter;
+import com.hendercine.sala.util.FeedParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity<MainContract.Presenter> implements
                                                                        MainContract
@@ -89,5 +90,10 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         RssFragmentAdapter adapter = new RssFragmentAdapter
                 (getSupportFragmentManager(), fragmentList, titles);
         mViewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public void onFail(RError error) {
+
     }
 }

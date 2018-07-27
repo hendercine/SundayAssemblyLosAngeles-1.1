@@ -12,6 +12,8 @@ import com.hendercine.sala.base.BasePresenter;
 import com.hendercine.sala.model.Feed;
 import com.hendercine.sala.model.RError;
 import com.hendercine.sala.model.RssItem;
+import com.hendercine.sala.parser.OnRssParserListener;
+import com.hendercine.sala.parser.RssReader;
 import com.hendercine.sala.session.SessionData;
 
 import java.util.List;
@@ -26,7 +28,7 @@ import timber.log.Timber;
  * /android-app-from-scratch-part-3-implementing-app-logic-2b62ae65dcc4
  */
 public class RssPresenter extends BasePresenter<RssContract.View> implements
-        RssContract.Presenter, OnRssParserListener {
+                                                                  RssContract.Presenter, OnRssParserListener {
 
     private SessionData mSessionData;
 
@@ -38,7 +40,7 @@ public class RssPresenter extends BasePresenter<RssContract.View> implements
     @Override
     public void loadRssItems(Feed feed, boolean fromCache) {
         if (mSessionData.hasUrl(feed.getUrl()) && fromCache) {
-            Timber.v("Read from cache: " + feed.getUrl());
+            Timber.v("Read from cache: %s", feed.getUrl());
 
             getView().onRssItemsLoaded(mSessionData.getContent(feed.getUrl()));
         } else {

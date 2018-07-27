@@ -11,7 +11,7 @@ package com.hendercine.sala;
 import android.app.Application;
 
 import com.hendercine.sala.di.component.ApplicationComponent;
-import com.hendercine.sala.di.component.DaggerActivityComponent;
+import com.hendercine.sala.di.component.DaggerApplicationComponent;
 import com.hendercine.sala.di.module.ApplicationModule;
 import com.hendercine.sala.session.SessionData;
 import com.squareup.leakcanary.LeakCanary;

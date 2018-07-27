@@ -13,10 +13,13 @@ import com.hendercine.sala.session.SessionData;
 
 import javax.inject.Singleton;
 
+import dagger.Module;
 import dagger.Provides;
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/17/18.
  */
+
+@Module
 public class ApplicationModule {
 
     private final SalaApplication mApplication;
