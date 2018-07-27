@@ -34,12 +34,10 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-
     // AboutLibraries
-    implementation ('com.mikepenz:aboutlibraries:6.1.0'){
+    implementation('com.mikepenz:aboutlibraries:6.1.0') {
         transitive = true
     }
-
     // Android Sdk
     implementation "com.android.support:appcompat-v7:$androidSupportVersion"
     implementation "com.android.support:support-v4:$androidSupportVersion"
@@ -51,32 +49,28 @@ dependencies {
     implementation "com.android.support:design:$androidSupportVersion"
     implementation "com.android.support:customtabs:$androidSupportVersion"
     implementation 'com.android.support:multidex:1.0.3'
-
     // Butterknife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-
     // Constraint Layout
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-
     // Dagger2
     implementation 'com.google.dagger:dagger:2.16'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.16'
     implementation 'org.glassfish:javax.annotation:10.0-b28'
-
     // Gson
     implementation 'com.google.code.gson:gson:2.8.5'
-
     // LeakCanary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-
     // Timber
     implementation 'com.jakewharton.timber:timber:4.7.0'
-
     // Testing Dependencies
     testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.20.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation ('com.android.support.test' +
-            '.espresso:espresso-core:3.0.2', {exclude group: 'com.android' +
-            '.support', module: 'support-annotations'})
+    androidTestImplementation('com.android.support.test' +
+            '.espresso:espresso-core:3.0.2', {
+        exclude group: 'com.android' +
+                '.support', module: 'support-annotations'
+    })
 }
