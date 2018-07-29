@@ -18,6 +18,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.hendercine.sala.BuildConfig;
 import com.hendercine.sala.di.component.ActivityComponent;
 import com.hendercine.sala.di.component.DaggerActivityComponent;
 import com.hendercine.sala.di.module.ActivityModule;
@@ -25,6 +26,7 @@ import com.hendercine.sala.di.module.ActivityModule;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/12/18. MVP
@@ -46,9 +48,9 @@ public abstract class BaseActivity<T extends BaseMvpPresenter> extends AppCompat
         super.onCreate(savedInstanceState);
         setContentView(getContentResource());
         ButterKnife.bind(this);
-//        if (BuildConfig.DEBUG) {
-//            Timber.plant(new Timber.DebugTree());
-//        }
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        }
         mActivityComponent = DaggerActivityComponent.builder()
                 .activityModule(new ActivityModule(this))
                 .build();
