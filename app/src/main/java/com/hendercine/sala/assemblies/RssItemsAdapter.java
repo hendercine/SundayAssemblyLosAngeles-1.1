@@ -6,7 +6,7 @@
  * Last modified 7/26/18 2:26 PM
  */
 
-package com.hendercine.sala.rss;
+package com.hendercine.sala.assemblies;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

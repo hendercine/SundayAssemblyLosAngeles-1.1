@@ -6,7 +6,7 @@
  * Last modified 7/17/18 11:14 AM
  */
 
-package com.hendercine.sala.rss;
+package com.hendercine.sala.assemblies;
 
 import com.hendercine.sala.base.AsyncCallbackView;
 import com.hendercine.sala.base.BaseMvpPresenter;
@@ -20,11 +20,11 @@ import java.util.List;
  * https://medium.com/android-bits
  * /android-app-from-scratch-part-3-implementing-app-logic-2b62ae65dcc4
  */
-public interface RssContract {
+public interface AssembliesContract {
 
     // User actions. Presenter will implement
-    interface Presenter extends BaseMvpPresenter<RssContract.View> {
-        void loadRssItems(Feed feed, boolean fromCache);
+    interface Presenter extends BaseMvpPresenter<AssembliesContract.View> {
+        void loadAssemblies(Feed feed, boolean fromCache);
         void browseRssUrl(Assembly assembly);
     }
 

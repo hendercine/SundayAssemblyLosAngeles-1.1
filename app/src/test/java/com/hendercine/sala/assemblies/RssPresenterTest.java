@@ -6,7 +6,7 @@
  * Last modified 7/26/18 5:51 PM
  */
 
-package com.hendercine.sala.rss;
+package com.hendercine.sala.assemblies;
 
 import com.hendercine.sala.model.Feed;
 import com.hendercine.sala.model.RError;
@@ -36,7 +36,7 @@ public class RssPresenterTest {
     private RssPresenter mRssPresenter;
 
     @Mock
-    private RssContract.View mView;
+    private AssembliesContract.View mView;
     @Captor
     private ArgumentCaptor<List<Assembly>> mCaptorRssItems;
     @Captor
@@ -74,7 +74,7 @@ public class RssPresenterTest {
 
     @Test
     public void testLoadRssItemsFromCache() {
-        mRssPresenter.loadRssItems(mFeed, true);
+        mRssPresenter.loadAssemblies(mFeed, true);
         verify(mView).onRssItemsLoaded(MOCK_RSS_ITEMS);
     }
 

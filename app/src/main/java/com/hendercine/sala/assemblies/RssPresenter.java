@@ -6,7 +6,7 @@
  * Last modified 7/17/18 11:23 AM
  */
 
-package com.hendercine.sala.rss;
+package com.hendercine.sala.assemblies;
 
 import com.hendercine.sala.base.BasePresenter;
 import com.hendercine.sala.model.Feed;
@@ -27,8 +27,8 @@ import timber.log.Timber;
  * https://medium.com/android-bits
  * /android-app-from-scratch-part-3-implementing-app-logic-2b62ae65dcc4
  */
-public class RssPresenter extends BasePresenter<RssContract.View> implements
-                                                                  RssContract.Presenter, OnRssParserListener {
+public class RssPresenter extends BasePresenter<AssembliesContract.View> implements
+                                                                         AssembliesContract.Presenter, OnRssParserListener {
 
     private SessionData mSessionData;
 
@@ -38,7 +38,7 @@ public class RssPresenter extends BasePresenter<RssContract.View> implements
     }
 
     @Override
-    public void loadRssItems(Feed feed, boolean fromCache) {
+    public void loadAssemblies(Feed feed, boolean fromCache) {
         if (mSessionData.hasUrl(feed.getUrl()) && fromCache) {
             Timber.v("Read from cache: %s", feed.getUrl());
 

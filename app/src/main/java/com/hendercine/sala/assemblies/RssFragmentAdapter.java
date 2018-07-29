@@ -6,7 +6,7 @@
  * Last modified 7/17/18 12:57 PM
  */
 
-package com.hendercine.sala.rss;
+package com.hendercine.sala.assemblies;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

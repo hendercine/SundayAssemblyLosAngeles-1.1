@@ -11,8 +11,8 @@ import com.hendercine.sala.chrome.ChromeTabsWrapper;
 import com.hendercine.sala.model.Feed;
 import com.hendercine.sala.model.RError;
 import com.hendercine.sala.model.Assembly;
-import com.hendercine.sala.rss.RssFragment;
-import com.hendercine.sala.rss.RssFragmentAdapter;
+import com.hendercine.sala.assemblies.RssFragment;
+import com.hendercine.sala.assemblies.RssFragmentAdapter;
 import com.hendercine.sala.util.FeedParser;
 
 import java.util.ArrayList;

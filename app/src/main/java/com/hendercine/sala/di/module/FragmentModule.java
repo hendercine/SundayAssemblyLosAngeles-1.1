@@ -8,8 +8,8 @@
 
 package com.hendercine.sala.di.module;
 
-import com.hendercine.sala.rss.RssContract;
-import com.hendercine.sala.rss.RssPresenter;
+import com.hendercine.sala.assemblies.AssembliesContract;
+import com.hendercine.sala.assemblies.RssPresenter;
 import com.hendercine.sala.session.SessionData;
 
 import dagger.Module;
@@ -22,7 +22,7 @@ import dagger.Provides;
 public class FragmentModule {
 
     @Provides
-    RssContract.Presenter providesRssPresenter(SessionData sessionData) {
+    AssembliesContract.Presenter providesRssPresenter(SessionData sessionData) {
         return new RssPresenter(sessionData);
     }
 

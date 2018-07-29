@@ -6,7 +6,7 @@
  * Last modified 7/16/18 5:41 PM
  */
 
-package com.hendercine.sala.rss;
+package com.hendercine.sala.assemblies;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -31,7 +31,7 @@ import butterknife.BindView;
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/16/18.
  */
 public class RssFragment extends BaseFragment<RssPresenter> implements
-                                                            RssContract.View,
+                                                            AssembliesContract.View,
                                                             SwipeRefreshLayout.OnRefreshListener, RssItemsAdapter.OnItemClickListener {
 
     private static final String KEY_FEED = "FEED";
@@ -75,7 +75,7 @@ public class RssFragment extends BaseFragment<RssPresenter> implements
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mAdapter);
         mSwRefresh.setOnRefreshListener(this);
-        getPresenter().loadRssItems(mFeed, true);
+        getPresenter().loadAssemblies(mFeed, true);
 
     }
 
@@ -118,7 +118,7 @@ public class RssFragment extends BaseFragment<RssPresenter> implements
     @Override
     public void onRefresh() {
 
-        getPresenter().loadRssItems(mFeed, false);
+        getPresenter().loadAssemblies(mFeed, false);
     }
 
     @Override

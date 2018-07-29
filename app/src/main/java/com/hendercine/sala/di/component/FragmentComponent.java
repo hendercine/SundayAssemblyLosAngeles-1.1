@@ -9,7 +9,7 @@
 package com.hendercine.sala.di.component;
 
 import com.hendercine.sala.di.module.FragmentModule;
-import com.hendercine.sala.rss.RssFragment;
+import com.hendercine.sala.assemblies.RssFragment;
 
 import dagger.Component;
 /**
