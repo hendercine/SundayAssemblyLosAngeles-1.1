@@ -8,7 +8,7 @@
 
 package com.hendercine.sala.parser;
 
-import com.hendercine.sala.model.RssItem;
+import com.hendercine.sala.model.Assembly;
 
 import java.util.List;
 /**
@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface OnRssParserListener {
 
-    void onSuccess(List<RssItem> rssItemList, String rssUrl);
+    void onSuccess(List<Assembly> assemblyList, String rssUrl);
 
     void onFail(String rssUrl);
 

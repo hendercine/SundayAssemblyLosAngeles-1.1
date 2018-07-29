@@ -8,7 +8,7 @@
 
 package com.hendercine.sala.parser;
 
-import com.hendercine.sala.model.RssItem;
+import com.hendercine.sala.model.Assembly;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -25,7 +25,7 @@ public class RssParser extends DefaultHandler {
 
     private String mElementValue = null;
     private boolean mElementOn = false;
-    private RssItem mRssItem;
+    private Assembly mAssembly;
 
     private String mTempTitle = "";
     private String mTempLink;
@@ -37,14 +37,14 @@ public class RssParser extends DefaultHandler {
     private boolean mParsingDesc = false;
     private boolean mParsingLink = false;
 
-    private final ArrayList<RssItem> mItems;
+    private final ArrayList<Assembly> mItems;
 
     public RssParser() {
         super();
         mItems = new ArrayList<>();
     }
 
-    public ArrayList<RssItem> getItems() {
+    public ArrayList<Assembly> getItems() {
         return mItems;
     }
 
@@ -52,7 +52,7 @@ public class RssParser extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         mElementOn = true;
         if (localName.equals("item")) {
-            mRssItem = new RssItem();
+            mAssembly = new Assembly();
         } else if (localName.equalsIgnoreCase("title") && !qName.contains
                 ("media")) {
             mParsingTitle = true;
@@ -77,19 +77,19 @@ public class RssParser extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
         mElementOn = false;
         // Sets the values after retrieving them from the XML tags
-        if (mRssItem != null) {
+        if (mAssembly != null) {
             if (localName.equalsIgnoreCase("item")) {
-                mRssItem = new RssItem();
-                mRssItem.setTitle(mTempTitle.trim());
-                mRssItem.setUrl(mTempLink);
-                mRssItem.setImageUrl(mTempImage);
-                mRssItem.setPubdate(mTempPubdate);
-                mRssItem.setDescription(mTempDescription);
+                mAssembly = new Assembly();
+                mAssembly.setAssemblyDate(mTempTitle.trim());
+                mAssembly.setAssemblyTheme(mTempLink);
+                mAssembly.setAssemblyDescription(mTempImage);
+                mAssembly.setAssemblyPhotoUrl(mTempPubdate);
+                mAssembly.setDescription(mTempDescription);
                 if (mTempImage == null && mTempDescription != null &&
                         getImageSourceFromDescription(mTempDescription) != null) {
-                    mRssItem.setImageUrl(getImageSourceFromDescription(mTempDescription));
+                    mAssembly.setAssemblyDescription(getImageSourceFromDescription(mTempDescription));
                 }
-                mItems.add(mRssItem);
+                mItems.add(mAssembly);
                 mTempLink = "";
                 mTempImage = null;
                 mTempPubdate = "";

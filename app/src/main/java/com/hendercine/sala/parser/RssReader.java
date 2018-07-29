@@ -11,7 +11,7 @@ package com.hendercine.sala.parser;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 
-import com.hendercine.sala.model.RssItem;
+import com.hendercine.sala.model.Assembly;
 
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
@@ -33,7 +33,7 @@ import timber.log.Timber;
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/26/18.
  */
-public class RssReader extends AsyncTask<Void, Integer, ArrayList<RssItem>> {
+public class RssReader extends AsyncTask<Void, Integer, ArrayList<Assembly>> {
 
     private final OnRssParserListener mListener;
     private final String mRssUrl;
@@ -47,9 +47,9 @@ public class RssReader extends AsyncTask<Void, Integer, ArrayList<RssItem>> {
     private String mEncoding;
 
     @Override
-    protected ArrayList<RssItem> doInBackground(Void... params) {
+    protected ArrayList<Assembly> doInBackground(Void... params) {
 
-        ArrayList<RssItem> list = null;
+        ArrayList<Assembly> list = null;
         InputStream inputStream = null;
         try {
             java.net.URL url = new URL(mRssUrl);
@@ -78,7 +78,7 @@ public class RssReader extends AsyncTask<Void, Integer, ArrayList<RssItem>> {
                     inputSource.setEncoding(mEncoding);
                 }
                 xmlR.parse(inputSource);
-                ArrayList<RssItem> items = myXMLHandler.getItems();
+                ArrayList<Assembly> items = myXMLHandler.getItems();
                 list.addAll(items);
 
                 return list;
@@ -101,10 +101,10 @@ public class RssReader extends AsyncTask<Void, Integer, ArrayList<RssItem>> {
     }
 
     @Override
-    protected void onPostExecute(ArrayList<RssItem> rssItemModels) {
-        super.onPostExecute(rssItemModels);
-        if (rssItemModels != null && rssItemModels.size() > 0) {
-            mListener.onSuccess(rssItemModels, mRssUrl);
+    protected void onPostExecute(ArrayList<Assembly> assemblyModels) {
+        super.onPostExecute(assemblyModels);
+        if (assemblyModels != null && assemblyModels.size() > 0) {
+            mListener.onSuccess(assemblyModels, mRssUrl);
         } else {
             mListener.onFail(mRssUrl);
         }

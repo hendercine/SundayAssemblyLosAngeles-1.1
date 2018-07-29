@@ -8,7 +8,7 @@
 
 package com.hendercine.sala.session;
 
-import com.hendercine.sala.model.RssItem;
+import com.hendercine.sala.model.Assembly;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,17 +23,17 @@ public class SessionData {
     public SessionData() {
     }
 
-    private final HashMap<String, List<RssItem>> mContentMap = new HashMap<>();
+    private final HashMap<String, List<Assembly>> mContentMap = new HashMap<>();
 
     public boolean hasUrl(String url) {
         return mContentMap.containsKey(url);
     }
 
-    public void addContent(String url, List<RssItem> items) {
+    public void addContent(String url, List<Assembly> items) {
         mContentMap.put(url, items);
     }
 
-    public List<RssItem> getContent(String url) {
+    public List<Assembly> getContent(String url) {
         return mContentMap.get(url);
     }
 }

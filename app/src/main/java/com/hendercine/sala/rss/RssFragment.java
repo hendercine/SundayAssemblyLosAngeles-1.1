@@ -21,7 +21,7 @@ import com.hendercine.sala.R;
 import com.hendercine.sala.base.BaseFragment;
 import com.hendercine.sala.model.Feed;
 import com.hendercine.sala.model.RError;
-import com.hendercine.sala.model.RssItem;
+import com.hendercine.sala.model.Assembly;
 
 import java.util.List;
 
@@ -96,8 +96,8 @@ public class RssFragment extends BaseFragment<RssPresenter> implements
     }
 
     @Override
-    public void onRssItemsLoaded(List<RssItem> rssItems) {
-        mAdapter.setItems(rssItems);
+    public void onRssItemsLoaded(List<Assembly> assemblies) {
+        mAdapter.setItems(assemblies);
         mAdapter.notifyDataSetChanged();
         if (mRecyclerView.getVisibility() != View.VISIBLE) {
             mRecyclerView.setVisibility(View.VISIBLE);
@@ -105,8 +105,8 @@ public class RssFragment extends BaseFragment<RssPresenter> implements
     }
 
     @Override
-    public void onBrowse(RssItem rssItem) {
-        mListener.onItemSelected(rssItem);
+    public void onBrowse(Assembly assembly) {
+        mListener.onItemSelected(assembly);
     }
 
     @Override
@@ -122,8 +122,8 @@ public class RssFragment extends BaseFragment<RssPresenter> implements
     }
 
     @Override
-    public void onItemSelected(RssItem rssItem) {
-        getPresenter().browseRssUrl(rssItem);
+    public void onItemSelected(Assembly assembly) {
+        getPresenter().browseRssUrl(assembly);
     }
 
     @Override
@@ -141,6 +141,6 @@ public class RssFragment extends BaseFragment<RssPresenter> implements
     }
 
     public interface OnItemSelectListener {
-        void onItemSelected(RssItem rssItem);
+        void onItemSelected(Assembly assembly);
     }
 }

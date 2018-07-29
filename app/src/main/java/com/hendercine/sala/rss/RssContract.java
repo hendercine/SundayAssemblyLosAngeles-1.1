@@ -12,7 +12,7 @@ import com.hendercine.sala.base.AsyncCallbackView;
 import com.hendercine.sala.base.BaseMvpPresenter;
 import com.hendercine.sala.base.BaseView;
 import com.hendercine.sala.model.Feed;
-import com.hendercine.sala.model.RssItem;
+import com.hendercine.sala.model.Assembly;
 
 import java.util.List;
 /**
@@ -25,15 +25,15 @@ public interface RssContract {
     // User actions. Presenter will implement
     interface Presenter extends BaseMvpPresenter<RssContract.View> {
         void loadRssItems(Feed feed, boolean fromCache);
-        void browseRssUrl(RssItem rssItem);
+        void browseRssUrl(Assembly assembly);
     }
 
     // Action callbacks. Activity/Fragment will implement
     interface View extends BaseView, AsyncCallbackView {
 
-        void onRssItemsLoaded(List<RssItem> rssItems);
+        void onRssItemsLoaded(List<Assembly> assemblies);
 
-        void onBrowse(RssItem rssItem);
+        void onBrowse(Assembly assembly);
 
     }
 

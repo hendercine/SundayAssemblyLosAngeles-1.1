@@ -10,7 +10,7 @@ package com.hendercine.sala.rss;
 
 import com.hendercine.sala.model.Feed;
 import com.hendercine.sala.model.RError;
-import com.hendercine.sala.model.RssItem;
+import com.hendercine.sala.model.Assembly;
 import com.hendercine.sala.session.SessionData;
 
 import org.junit.Before;
@@ -31,14 +31,14 @@ import static org.mockito.Mockito.verify;
 public class RssPresenterTest {
 
     public static final String MOCK_URL = "MOCK_URL";
-    private List<RssItem> MOCK_RSS_ITEMS = new ArrayList<>();
+    private List<Assembly> MOCK_RSS_ITEMS = new ArrayList<>();
     private Feed mFeed = new Feed();
     private RssPresenter mRssPresenter;
 
     @Mock
     private RssContract.View mView;
     @Captor
-    private ArgumentCaptor<List<RssItem>> mCaptorRssItems;
+    private ArgumentCaptor<List<Assembly>> mCaptorRssItems;
     @Captor
     private ArgumentCaptor<RError> mCaptorError;
 
@@ -54,12 +54,12 @@ public class RssPresenterTest {
     }
 
     private void generateMockRssItems() {
-        RssItem rssItem = new RssItem();
-        rssItem.setUrl("http://");
-        rssItem.setTitle("title");
-        rssItem.setDescription("description");
+        Assembly assembly = new Assembly();
+        assembly.setAssemblyTheme("http://");
+        assembly.setAssemblyDate("title");
+        assembly.setDescription("description");
 
-        MOCK_RSS_ITEMS.add(rssItem);
+        MOCK_RSS_ITEMS.add(assembly);
         mFeed.setUrl(MOCK_URL);
     }
 

@@ -11,7 +11,7 @@ package com.hendercine.sala.rss;
 import com.hendercine.sala.base.BasePresenter;
 import com.hendercine.sala.model.Feed;
 import com.hendercine.sala.model.RError;
-import com.hendercine.sala.model.RssItem;
+import com.hendercine.sala.model.Assembly;
 import com.hendercine.sala.parser.OnRssParserListener;
 import com.hendercine.sala.parser.RssReader;
 import com.hendercine.sala.session.SessionData;
@@ -51,17 +51,17 @@ public class RssPresenter extends BasePresenter<RssContract.View> implements
     }
 
     @Override
-    public void browseRssUrl(RssItem rssItem) {
+    public void browseRssUrl(Assembly assembly) {
         if (isAttached()) {
-            getView().onBrowse(rssItem);
+            getView().onBrowse(assembly);
         }
     }
 
     @Override
-    public void onSuccess(List<RssItem> rssItemList, String rssUrl) {
-        mSessionData.addContent(rssUrl, rssItemList);
+    public void onSuccess(List<Assembly> assemblyList, String rssUrl) {
+        mSessionData.addContent(rssUrl, assemblyList);
         if (isAttached()) {
-            getView().onRssItemsLoaded(rssItemList);
+            getView().onRssItemsLoaded(assemblyList);
             getView().hideLoading();
         }
     }

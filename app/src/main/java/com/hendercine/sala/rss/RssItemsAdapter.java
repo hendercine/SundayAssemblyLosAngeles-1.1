@@ -18,7 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hendercine.sala.R;
-import com.hendercine.sala.model.RssItem;
+import com.hendercine.sala.model.Assembly;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class RssItemsAdapter extends RecyclerView.Adapter<RssItemsAdapter
         .ViewHolder> {
 
     private final Context mContext;
-    private final List<RssItem> mItems = new ArrayList<>();
+    private final List<Assembly> mItems = new ArrayList<>();
     private OnItemClickListener mListener;
 
     public RssItemsAdapter(Context context) {
@@ -44,7 +44,7 @@ public class RssItemsAdapter extends RecyclerView.Adapter<RssItemsAdapter
         this.mListener = listener;
     }
 
-    public void setItems(List<RssItem> items) {
+    public void setItems(List<Assembly> items) {
         mItems.clear();
         mItems.addAll(items);
     }
@@ -67,7 +67,7 @@ public class RssItemsAdapter extends RecyclerView.Adapter<RssItemsAdapter
 
     interface OnItemClickListener {
 
-        void onItemSelected(RssItem rssItem);
+        void onItemSelected(Assembly assembly);
 
     }
 

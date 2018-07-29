@@ -11,47 +11,47 @@ package com.hendercine.sala.model;
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/17/18.
  */
-public class RssItem {
+public class Assembly {
 
-    private String mTitle;
-    private String mUrl;
-    private String mImageUrl;
-    private String mPubdate;
+    private String mAssemblyDate;
+    private String mAssemblyTheme;
+    private String mAssemblyDescription;
+    private String mAssemblyPhotoUrl;
 
     private int mFeedId;
     private String mFeedTitle;
     private String mDescription;
 
-    public String getTitle() {
-        return mTitle;
+    public String getAssemblyDate() {
+        return mAssemblyDate;
     }
 
-    public void setTitle(String title) {
-        mTitle = title;
+    public void setAssemblyDate(String assemblyDate) {
+        mAssemblyDate = assemblyDate;
     }
 
-    public String getUrl() {
-        return mUrl;
+    public String getAssemblyTheme() {
+        return mAssemblyTheme;
     }
 
-    public void setUrl(String url) {
-        mUrl = url;
+    public void setAssemblyTheme(String assemblyTheme) {
+        mAssemblyTheme = assemblyTheme;
     }
 
-    public String getImageUrl() {
-        return mImageUrl;
+    public String getAssemblyDescription() {
+        return mAssemblyDescription;
     }
 
-    public void setImageUrl(String imageUrl) {
-        mImageUrl = imageUrl;
+    public void setAssemblyDescription(String assemblyDescription) {
+        mAssemblyDescription = assemblyDescription;
     }
 
-    public String getPubdate() {
-        return mPubdate;
+    public String getAssemblyPhotoUrl() {
+        return mAssemblyPhotoUrl;
     }
 
-    public void setPubdate(String pubdate) {
-        mPubdate = pubdate;
+    public void setAssemblyPhotoUrl(String assemblyPhotoUrl) {
+        mAssemblyPhotoUrl = assemblyPhotoUrl;
     }
 
     public int getFeedId() {
