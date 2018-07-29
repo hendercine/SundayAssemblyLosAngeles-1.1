@@ -25,8 +25,8 @@ public class MainPresenter extends BasePresenter<MainContract.View>
     }
 
     @Override
-    public void loadRssFragments() {
-        getView().onLoadRssFragments();
+    public void loadAssemblyFragments() {
+        getView().onLoadAssemblyFragments();
 
     }
 }

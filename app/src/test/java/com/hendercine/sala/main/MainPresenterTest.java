@@ -33,8 +33,8 @@ public class MainPresenterTest {
 
     @Test
     public void testLoadRssItems() {
-        mMainPresenter.loadRssFragments();
-        verify(mView).onLoadRssFragments();
+        mMainPresenter.loadAssemblyFragments();
+        verify(mView).onLoadAssemblyFragments();
     }
 
 }

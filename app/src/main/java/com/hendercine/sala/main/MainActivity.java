@@ -48,7 +48,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         setSupportActionBar(mToolbar);
         mTabLayout.setupWithViewPager(mViewPager);
         mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        getPresenter().loadRssFragments();
+        getPresenter().loadAssemblyFragments();
     }
 
     @Override
@@ -58,7 +58,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
 
 
     @Override
-    public void onLoadRssFragments() {
+    public void onLoadAssemblyFragments() {
         setUpViewPager();
     }
 
