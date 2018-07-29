@@ -22,6 +22,7 @@ import com.hendercine.sala.BuildConfig;
 import com.hendercine.sala.di.component.ActivityComponent;
 import com.hendercine.sala.di.component.DaggerActivityComponent;
 import com.hendercine.sala.di.module.ActivityModule;
+import com.hendercine.sala.model.RError;
 
 import javax.inject.Inject;
 
@@ -41,7 +42,7 @@ public abstract class BaseActivity<T extends BaseMvpPresenter> extends AppCompat
     @Inject
     T mPresenter;
 
-    private ActivityComponent mActivityComponent;
+    ActivityComponent mActivityComponent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,9 +65,6 @@ public abstract class BaseActivity<T extends BaseMvpPresenter> extends AppCompat
      */
     @Override
     protected void onDestroy() {
-//        if (mUnbinder != null) {
-//            mUnbinder.unbind();
-//        }
         super.onDestroy();
         mPresenter.detach();
     }
@@ -78,10 +76,17 @@ public abstract class BaseActivity<T extends BaseMvpPresenter> extends AppCompat
     /**
      * Getter for the presenter
      *
-     * @return the present for the activity
+     * @return the presenter for the activity
      */
     public T getPresenter() {
         return mPresenter;
+    }
+
+    @Override
+    public void onFail(RError error) {
+        if (!isFinishing()) {
+            showToast(error.getMessage());
+        }
     }
 
     /**
@@ -101,10 +106,6 @@ public abstract class BaseActivity<T extends BaseMvpPresenter> extends AppCompat
      * Injecting dependencies
      */
     protected abstract void injectDependencies();
-
-//    public void setUnbinder(Unbinder unbinder) {
-//        mUnbinder = unbinder;
-//    }
 
     public void showSnackBar(int resId) {
         Snackbar.make(
