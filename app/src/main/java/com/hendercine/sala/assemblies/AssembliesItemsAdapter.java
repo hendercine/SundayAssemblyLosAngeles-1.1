@@ -29,14 +29,14 @@ import butterknife.ButterKnife;
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/26/18.
  */
-public class RssItemsAdapter extends RecyclerView.Adapter<RssItemsAdapter
+public class AssembliesItemsAdapter extends RecyclerView.Adapter<AssembliesItemsAdapter
         .ViewHolder> {
 
     private final Context mContext;
     private final List<Assembly> mItems = new ArrayList<>();
     private OnItemClickListener mListener;
 
-    public RssItemsAdapter(Context context) {
+    public AssembliesItemsAdapter(Context context) {
         mContext = context;
     }
 

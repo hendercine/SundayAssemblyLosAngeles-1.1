@@ -11,8 +11,8 @@ import com.hendercine.sala.chrome.ChromeTabsWrapper;
 import com.hendercine.sala.model.Feed;
 import com.hendercine.sala.model.RError;
 import com.hendercine.sala.model.Assembly;
-import com.hendercine.sala.assemblies.RssFragment;
-import com.hendercine.sala.assemblies.RssFragmentAdapter;
+import com.hendercine.sala.assemblies.AssembliesFragment;
+import com.hendercine.sala.assemblies.AssembliesFragmentAdapter;
 import com.hendercine.sala.util.FeedParser;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ import butterknife.BindView;
 public class MainActivity extends BaseActivity<MainContract.Presenter> implements
                                                                        MainContract
                                                                                .View,
-                                                                       RssFragment.OnItemSelectListener {
+                                                                       AssembliesFragment.OnItemSelectListener {
 
 
     @BindView(R.id.viewPager)
@@ -80,14 +80,14 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     }
 
     public void setUpViewPager() {
-        List<RssFragment> fragmentList = new ArrayList<>();
+        List<AssembliesFragment> fragmentList = new ArrayList<>();
         List<String> titles = new ArrayList<>();
         for (Feed feed : new FeedParser().parseFeeds(this)) {
-            fragmentList.add(RssFragment.newInstance(feed));
+            fragmentList.add(AssembliesFragment.newInstance(feed));
             titles.add(feed.getTitle());
         }
 
-        RssFragmentAdapter adapter = new RssFragmentAdapter
+        AssembliesFragmentAdapter adapter = new AssembliesFragmentAdapter
                 (getSupportFragmentManager(), fragmentList, titles);
         mViewPager.setAdapter(adapter);
     }

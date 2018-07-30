@@ -30,9 +30,9 @@ import butterknife.BindView;
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/16/18.
  */
-public class RssFragment extends BaseFragment<AssembliesPresenter> implements
+public class AssembliesFragment extends BaseFragment<AssembliesPresenter> implements
                                                             AssembliesContract.View,
-                                                            SwipeRefreshLayout.OnRefreshListener, RssItemsAdapter.OnItemClickListener {
+                                                            SwipeRefreshLayout.OnRefreshListener, AssembliesItemsAdapter.OnItemClickListener {
 
     private static final String KEY_FEED = "FEED";
 
@@ -44,15 +44,15 @@ public class RssFragment extends BaseFragment<AssembliesPresenter> implements
     TextView mTvNoItems;
 
     private Feed mFeed;
-    private RssItemsAdapter mAdapter;
+    private AssembliesItemsAdapter mAdapter;
     private OnItemSelectListener mListener;
 
-    public static RssFragment newInstance(Feed feed) {
-        RssFragment rssFragment = new RssFragment();
+    public static AssembliesFragment newInstance(Feed feed) {
+        AssembliesFragment assembliesFragment = new AssembliesFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable(KEY_FEED, feed);
-        rssFragment.setArguments(bundle);
-        return rssFragment;
+        assembliesFragment.setArguments(bundle);
+        return assembliesFragment;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class RssFragment extends BaseFragment<AssembliesPresenter> implements
 
     @Override
     protected void init(@Nullable Bundle state) {
-        mAdapter = new RssItemsAdapter(getActivity());
+        mAdapter = new AssembliesItemsAdapter(getActivity());
         mAdapter.setListener(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mAdapter);

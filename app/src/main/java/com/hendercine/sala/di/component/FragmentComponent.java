@@ -9,7 +9,7 @@
 package com.hendercine.sala.di.component;
 
 import com.hendercine.sala.di.module.FragmentModule;
-import com.hendercine.sala.assemblies.RssFragment;
+import com.hendercine.sala.assemblies.AssembliesFragment;
 
 import dagger.Component;
 /**
@@ -19,6 +19,6 @@ import dagger.Component;
 @Component(modules = {FragmentModule.class})
 public interface FragmentComponent {
 
-    void inject(RssFragment obj);
+    void inject(AssembliesFragment obj);
 
 }

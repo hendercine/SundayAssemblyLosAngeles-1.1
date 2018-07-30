@@ -17,20 +17,20 @@ import java.util.List;
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/17/18.
  */
-public class RssFragmentAdapter extends FragmentPagerAdapter {
+public class AssembliesFragmentAdapter extends FragmentPagerAdapter {
 
-    private final List<RssFragment> mRssFragments;
+    private final List<AssembliesFragment> mAssembliesFragments;
     private final List<String> mTitles;
 
-    public RssFragmentAdapter(FragmentManager fm, List<RssFragment> rssFragments, List<String> titles) {
+    public AssembliesFragmentAdapter(FragmentManager fm, List<AssembliesFragment> assembliesFragments, List<String> titles) {
         super(fm);
-        mRssFragments = rssFragments;
+        mAssembliesFragments = assembliesFragments;
         mTitles = titles;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return mRssFragments.get(position);
+        return mAssembliesFragments.get(position);
     }
 
     @Override
@@ -40,6 +40,6 @@ public class RssFragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return mRssFragments.size();
+        return mAssembliesFragments.size();
     }
 }
