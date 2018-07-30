@@ -18,6 +18,7 @@ import java.util.List;
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/26/18.
  */
+// TODO: Replace with Firebase Realtime Database methods
 public class FeedParser {
 
     private static final String RSS_FILE = "rss.json";

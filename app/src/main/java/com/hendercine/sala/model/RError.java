@@ -13,7 +13,7 @@ package com.hendercine.sala.model;
  */
 public class RError {
 
-    public static final String ERROR_FETCH = "Failed to fetch RSS!";
+    public static final String ERROR_FETCH = "Failed to fetch Assembly!";
     private final String mMessage;
 
     public RError(String message) {

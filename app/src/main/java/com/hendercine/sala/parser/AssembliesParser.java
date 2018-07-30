@@ -21,7 +21,7 @@ import timber.log.Timber;
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/23/18.
  */
-public class RssParser extends DefaultHandler {
+public class AssembliesParser extends DefaultHandler {
 
     private String mElementValue = null;
     private boolean mElementOn = false;
@@ -30,7 +30,7 @@ public class RssParser extends DefaultHandler {
     private String mTempTitle = "";
     private String mTempLink;
     private String mTempImage;
-    private String mTempPubdate;
+    private String mTempDate;
     private String mTempDescription;
 
     private boolean mParsingTitle = false;
@@ -39,7 +39,7 @@ public class RssParser extends DefaultHandler {
 
     private final ArrayList<Assembly> mItems;
 
-    public RssParser() {
+    AssembliesParser() {
         super();
         mItems = new ArrayList<>();
     }
@@ -82,8 +82,8 @@ public class RssParser extends DefaultHandler {
                 mAssembly = new Assembly();
                 mAssembly.setAssemblyDate(mTempTitle.trim());
                 mAssembly.setAssemblyTheme(mTempLink);
-                mAssembly.setAssemblyDescription(mTempImage);
-                mAssembly.setAssemblyPhotoUrl(mTempPubdate);
+                mAssembly.setAssemblyDescription(mTempDescription);
+                mAssembly.setAssemblyPhotoUrl(mTempImage);
                 mAssembly.setDescription(mTempDescription);
                 if (mTempImage == null && mTempDescription != null &&
                         getImageSourceFromDescription(mTempDescription) != null) {
@@ -92,7 +92,7 @@ public class RssParser extends DefaultHandler {
                 mItems.add(mAssembly);
                 mTempLink = "";
                 mTempImage = null;
-                mTempPubdate = "";
+                mTempDate = "";
                 Timber.v("pended: %s", mTempTitle);
             } else if (localName.equalsIgnoreCase("Title") && !qName
                     .contains("media")) {
@@ -110,7 +110,7 @@ public class RssParser extends DefaultHandler {
                     mTempImage = mElementValue;
                 }
             } else if (localName.equals("pubDate")) {
-                mTempPubdate = mElementValue;
+                mTempDate = mElementValue;
             } else if (localName.equals("description")) {
                 mParsingDesc = false;
                 mElementValue = "";

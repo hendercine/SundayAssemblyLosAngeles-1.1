@@ -12,8 +12,8 @@ import com.hendercine.sala.base.BasePresenter;
 import com.hendercine.sala.model.Feed;
 import com.hendercine.sala.model.RError;
 import com.hendercine.sala.model.Assembly;
-import com.hendercine.sala.parser.OnRssParserListener;
-import com.hendercine.sala.parser.RssReader;
+import com.hendercine.sala.parser.OnAssembliesParserListener;
+import com.hendercine.sala.parser.AssembliesReader;
 import com.hendercine.sala.session.SessionData;
 
 import java.util.List;
@@ -28,7 +28,7 @@ import timber.log.Timber;
  * /android-app-from-scratch-part-3-implementing-app-logic-2b62ae65dcc4
  */
 public class AssembliesPresenter extends BasePresenter<AssembliesContract.View> implements
-                                                                         AssembliesContract.Presenter, OnRssParserListener {
+                                                                                AssembliesContract.Presenter, OnAssembliesParserListener {
 
     private SessionData mSessionData;
 
@@ -44,7 +44,7 @@ public class AssembliesPresenter extends BasePresenter<AssembliesContract.View> 
 
             getView().onAssemblyItemsLoaded(mSessionData.getContent(feed.getUrl()));
         } else {
-            RssReader request = new RssReader(this, feed.getUrl());
+            AssembliesReader request = new AssembliesReader(this, feed.getUrl());
             request.execute();
             getView().showLoading();
         }

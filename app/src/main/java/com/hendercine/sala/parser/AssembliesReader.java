@@ -33,15 +33,17 @@ import timber.log.Timber;
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/26/18.
  */
-public class RssReader extends AsyncTask<Void, Integer, ArrayList<Assembly>> {
 
-    private final OnRssParserListener mListener;
-    private final String mRssUrl;
+// TODO: Replace AsyncTask with Retrofit and RxJava
+public class AssembliesReader extends AsyncTask<Void, Integer, ArrayList<Assembly>> {
 
-    public RssReader(OnRssParserListener listener, String rssUrl) {
+    private final OnAssembliesParserListener mListener;
+    private final String mAssemblyUrl;
+
+    public AssembliesReader(OnAssembliesParserListener listener, String assemblyUrl) {
         mListener = listener;
-        mRssUrl = rssUrl;
-        Timber.v("Fetching: %s", rssUrl);
+        mAssemblyUrl = assemblyUrl;
+        Timber.v("Fetching: %s", assemblyUrl);
     }
 
     private String mEncoding;
@@ -52,7 +54,7 @@ public class RssReader extends AsyncTask<Void, Integer, ArrayList<Assembly>> {
         ArrayList<Assembly> list = null;
         InputStream inputStream = null;
         try {
-            java.net.URL url = new URL(mRssUrl);
+            java.net.URL url = new URL(mAssemblyUrl);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setReadTimeout(10000);
             httpURLConnection.setConnectTimeout(15000);
@@ -66,7 +68,7 @@ public class RssReader extends AsyncTask<Void, Integer, ArrayList<Assembly>> {
                 list = new ArrayList<>();
                 inputStream = httpURLConnection.getInputStream();
                 String responseString = readInputStream(inputStream, mEncoding);
-                RssParser myXMLHandler = new RssParser();
+                AssembliesParser myXMLHandler = new AssembliesParser();
                 SAXParserFactory saxPF = SAXParserFactory.newInstance();
                 SAXParser saxP = saxPF.newSAXParser();
                 XMLReader xmlR = saxP.getXMLReader();
@@ -104,9 +106,9 @@ public class RssReader extends AsyncTask<Void, Integer, ArrayList<Assembly>> {
     protected void onPostExecute(ArrayList<Assembly> assemblyModels) {
         super.onPostExecute(assemblyModels);
         if (assemblyModels != null && assemblyModels.size() > 0) {
-            mListener.onSuccess(assemblyModels, mRssUrl);
+            mListener.onSuccess(assemblyModels, mAssemblyUrl);
         } else {
-            mListener.onFail(mRssUrl);
+            mListener.onFail(mAssemblyUrl);
         }
     }
 
