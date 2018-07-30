@@ -30,7 +30,7 @@ import butterknife.BindView;
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/16/18.
  */
-public class RssFragment extends BaseFragment<RssPresenter> implements
+public class RssFragment extends BaseFragment<AssembliesPresenter> implements
                                                             AssembliesContract.View,
                                                             SwipeRefreshLayout.OnRefreshListener, RssItemsAdapter.OnItemClickListener {
 
@@ -96,7 +96,7 @@ public class RssFragment extends BaseFragment<RssPresenter> implements
     }
 
     @Override
-    public void onRssItemsLoaded(List<Assembly> assemblies) {
+    public void onAssemblyItemsLoaded(List<Assembly> assemblies) {
         mAdapter.setItems(assemblies);
         mAdapter.notifyDataSetChanged();
         if (mRecyclerView.getVisibility() != View.VISIBLE) {
@@ -123,7 +123,7 @@ public class RssFragment extends BaseFragment<RssPresenter> implements
 
     @Override
     public void onItemSelected(Assembly assembly) {
-        getPresenter().browseRssUrl(assembly);
+        getPresenter().browseAssemblyUrl(assembly);
     }
 
     @Override

@@ -28,12 +28,12 @@ import static org.mockito.Mockito.verify;
 /**
  * SundayAssemblyLosAngeles-1.1 created by hendercine on 7/26/18.
  */
-public class RssPresenterTest {
+public class AssembliesPresenterTest {
 
     public static final String MOCK_URL = "MOCK_URL";
     private List<Assembly> MOCK_RSS_ITEMS = new ArrayList<>();
     private Feed mFeed = new Feed();
-    private RssPresenter mRssPresenter;
+    private AssembliesPresenter mAssembliesPresenter;
 
     @Mock
     private AssembliesContract.View mView;
@@ -48,9 +48,9 @@ public class RssPresenterTest {
         generateMockRssItems();
 
         SessionData sessionData = new SessionData();
-        mRssPresenter = new RssPresenter(sessionData);
-        mRssPresenter.getSessionData().addContent(MOCK_URL, MOCK_RSS_ITEMS);
-        mRssPresenter.attach(mView);
+        mAssembliesPresenter = new AssembliesPresenter(sessionData);
+        mAssembliesPresenter.getSessionData().addContent(MOCK_URL, MOCK_RSS_ITEMS);
+        mAssembliesPresenter.attach(mView);
     }
 
     private void generateMockRssItems() {
@@ -65,8 +65,8 @@ public class RssPresenterTest {
 
     @Test
     public void testLoadRssItems() {
-        mRssPresenter.onSuccess(MOCK_RSS_ITEMS, MOCK_URL);
-        verify(mView).onRssItemsLoaded(mCaptorRssItems.capture());
+        mAssembliesPresenter.onSuccess(MOCK_RSS_ITEMS, MOCK_URL);
+        verify(mView).onAssemblyItemsLoaded(mCaptorRssItems.capture());
         verify(mView).hideLoading();
 
         assertTrue(mCaptorRssItems.getValue().equals(MOCK_RSS_ITEMS));
@@ -74,13 +74,13 @@ public class RssPresenterTest {
 
     @Test
     public void testLoadRssItemsFromCache() {
-        mRssPresenter.loadAssemblies(mFeed, true);
-        verify(mView).onRssItemsLoaded(MOCK_RSS_ITEMS);
+        mAssembliesPresenter.loadAssemblies(mFeed, true);
+        verify(mView).onAssemblyItemsLoaded(MOCK_RSS_ITEMS);
     }
 
     @Test
     public void testLoadFail() {
-        mRssPresenter.onFail(MOCK_URL);
+        mAssembliesPresenter.onFail(MOCK_URL);
         verify(mView).hideLoading();
         verify(mView).onFail(mCaptorError.capture());
 

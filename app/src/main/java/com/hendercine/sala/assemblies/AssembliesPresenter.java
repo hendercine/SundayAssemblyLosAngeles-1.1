@@ -27,13 +27,13 @@ import timber.log.Timber;
  * https://medium.com/android-bits
  * /android-app-from-scratch-part-3-implementing-app-logic-2b62ae65dcc4
  */
-public class RssPresenter extends BasePresenter<AssembliesContract.View> implements
+public class AssembliesPresenter extends BasePresenter<AssembliesContract.View> implements
                                                                          AssembliesContract.Presenter, OnRssParserListener {
 
     private SessionData mSessionData;
 
     @Inject
-    public RssPresenter(SessionData sessionData) {
+    public AssembliesPresenter(SessionData sessionData) {
         mSessionData = sessionData;
     }
 
@@ -42,7 +42,7 @@ public class RssPresenter extends BasePresenter<AssembliesContract.View> impleme
         if (mSessionData.hasUrl(feed.getUrl()) && fromCache) {
             Timber.v("Read from cache: %s", feed.getUrl());
 
-            getView().onRssItemsLoaded(mSessionData.getContent(feed.getUrl()));
+            getView().onAssemblyItemsLoaded(mSessionData.getContent(feed.getUrl()));
         } else {
             RssReader request = new RssReader(this, feed.getUrl());
             request.execute();
@@ -51,26 +51,26 @@ public class RssPresenter extends BasePresenter<AssembliesContract.View> impleme
     }
 
     @Override
-    public void browseRssUrl(Assembly assembly) {
+    public void browseAssemblyUrl(Assembly assembly) {
         if (isAttached()) {
             getView().onBrowse(assembly);
         }
     }
 
     @Override
-    public void onSuccess(List<Assembly> assemblyList, String rssUrl) {
-        mSessionData.addContent(rssUrl, assemblyList);
+    public void onSuccess(List<Assembly> assemblyList, String assemblyUrl) {
+        mSessionData.addContent(assemblyUrl, assemblyList);
         if (isAttached()) {
-            getView().onRssItemsLoaded(assemblyList);
+            getView().onAssemblyItemsLoaded(assemblyList);
             getView().hideLoading();
         }
     }
 
     @Override
-    public void onFail(String rssUrl) {
+    public void onFail(String assemblyUrl) {
         if (isAttached()) {
             getView().hideLoading();
-            getView().onFail(new RError("Failed to fetch RSS!"));
+            getView().onFail(new RError("Failed to fetch Assembly!"));
         }
     }
 
