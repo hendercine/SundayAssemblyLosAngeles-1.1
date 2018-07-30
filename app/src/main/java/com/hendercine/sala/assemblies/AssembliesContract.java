@@ -25,13 +25,13 @@ public interface AssembliesContract {
     // User actions. Presenter will implement
     interface Presenter extends BaseMvpPresenter<AssembliesContract.View> {
         void loadAssemblies(Feed feed, boolean fromCache);
-        void browseRssUrl(Assembly assembly);
+        void browseAssemblyUrl(Assembly assembly);
     }
 
     // Action callbacks. Activity/Fragment will implement
     interface View extends BaseView, AsyncCallbackView {
 
-        void onRssItemsLoaded(List<Assembly> assemblies);
+        void onAssemblyItemsLoaded(List<Assembly> assemblies);
 
         void onBrowse(Assembly assembly);
 
