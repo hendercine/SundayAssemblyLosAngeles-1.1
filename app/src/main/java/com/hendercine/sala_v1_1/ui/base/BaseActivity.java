@@ -17,6 +17,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.hendercine.sala_v1_1.BuildConfig;
 
 import butterknife.Unbinder;
@@ -43,6 +44,11 @@ public abstract class BaseActivity extends AppCompatActivity {
             mUnbinder.unbind();
         }
         super.onDestroy();
+    }
+
+
+    public String getUid() {
+        return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     public void setUnbinder(Unbinder unbinder) {
