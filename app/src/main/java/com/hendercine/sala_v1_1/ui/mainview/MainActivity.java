@@ -6,12 +6,12 @@
  * Last modified 9/21/18 1:48 PM
  */
 
-package com.hendercine.sala.ui.mainview;
+package com.hendercine.sala_v1_1.ui.mainview;
 
 import android.os.Bundle;
 
-import com.hendercine.sala.R;
-import com.hendercine.sala.ui.base.BaseActivity;
+import com.hendercine.sala_v1_1.R;
+import com.hendercine.sala_v1_1.ui.base.BaseActivity;
 
 public class MainActivity extends BaseActivity {
 

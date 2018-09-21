@@ -6,7 +6,7 @@
  * Last modified 9/21/18 1:48 PM
  */
 
-package com.hendercine.sala.ui.base;
+package com.hendercine.sala_v1_1.ui.base;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -17,7 +17,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.hendercine.sala.BuildConfig;
+import com.hendercine.sala_v1_1.BuildConfig;
 
 import butterknife.Unbinder;
 import timber.log.Timber;

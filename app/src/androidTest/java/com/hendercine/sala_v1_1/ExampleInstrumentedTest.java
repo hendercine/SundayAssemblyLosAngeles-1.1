@@ -1,4 +1,4 @@
-package com.hendercine.sala;
+package com.hendercine.sala_v1_1;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.hendercine.sala", appContext.getPackageName());
+        assertEquals("com.hendercine.sala_v1_1", appContext.getPackageName());
     }
 }

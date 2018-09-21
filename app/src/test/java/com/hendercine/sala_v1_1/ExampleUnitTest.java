@@ -1,4 +1,4 @@
-package com.hendercine.sala;
+package com.hendercine.sala_v1_1;
 
 import org.junit.Test;
 
