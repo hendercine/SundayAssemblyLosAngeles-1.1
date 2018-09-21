@@ -1,3 +1,62 @@
+<!--
+  ~ Created by James Henderson on 2018
+  ~ Copyright (c) Hendercine Productions and James Henderson 2018.
+  ~ All rights reserved.
+  ~
+  ~ Last modified 5/19/18 3:14 PM
+  -->
+
 <resources>
     <string name="app_name">Sunday Assembly Los Angeles</string>
+    <string name="logout">Log out</string>
+    <!-- Facebook and Twitter Keys-->
+    <!-- sterces.xml will have to be decrypted to use and re-encrypted before
+     commiting to git -->
+    <string name="facebook_application_id" translatable="false">@string/sala_facebook_app_id</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">@string/sala_fb_login_protocol_scheme</string>
+    <string name="twitter_consumer_key" translatable="false">@string/sala_twitter_consumer_key</string>
+    <string name="twitter_consumer_secret" translatable="false">@string/sala_twitter_consumer_secret</string>
+
+    <string name="title_activity_salamander_chat">SalamanderChatActivity
+    </string>
+    <string name="action_settings">Settings</string>
+    <string name="dummy_user_name">Username</string>
+    <string name="nav_profile_picture_description">User\'s profile picture.</string>
+    <string name="about_nav_title">About</string>
+    <string name="program_nav_title">Program</string>
+    <string name="lyrics_nav_title">Lyrics</string>
+    <string name="speaker_bio_nav_title">Speaker Bio</string>
+    <string name="assemblies_nav_title">Assemblies</string>
+    <string name="help_often_nav_title">Help Often</string>
+    <string name="live_better_nav_title">Live Better</string>
+    <string name="salamander_chat_nav_title">Salamander Chat</string>
+    <string name="instagram_nav_title">Instagram</string>
+    <string name="facebook_nav_title">Facebook</string>
+    <string name="twitter_nav_title">Twitter</string>
+    <string name="sala_on_the_web_nav_title">Sala on the Web</string>
+    <string name="logout_nav_title">Log out</string>
+    <string name="navigation_drawer_open">Open the Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close the Navigation Drawer</string>
+    <string name="social_nav_title">Social</string>
+    <string name="about_sala_title">Live Better. Help Often. Wonder More.</string>
+    <string name="our_mission_header">Our Mission</string>
+    <string name="mission_statement">Sunday Assembly Los Angeles is a god-free community that meets monthly to hear great talks, connect for service projects, sing songs and generally celebrate life. Assemblies are free to attend, and everyone is welcome./nSALA is a chapter member of the American Humanist Association.</string>
+    <string name="together_we_will_header">Together, we will:</string>
+    <string name="live_help_wonder">Live Better. We aim to provide inspiring, thought-provoking and practical ideas that help people to live the lives they want to lead and be the people they want to be. /nHelp Often. Assemblies are communities of action building lives of purpose, encouraging us all to help anyone who needs it to support each other. We take on service projects together because we believe helping makes life better./nWonder More. Hearing talks, singing as one, listening to readings and even playing games helps us to connect with each other and the awesome world we live in.</string>
+    <string name="the_sunday_assembly_header">The Sunday Assembly</string>
+    <string name="the_assembly_body_text">Is 100% celebration of life. We are born from nothing and go to nothing. Let’s enjoy it together. Has no doctrine. We have no set texts so we can make use of wisdom from all sources. Has no deity. We don’t do supernatural but we also won’t tell you you’re wrong if you do. Is radically inclusive. Everyone is welcome, regardless of their beliefs – this is a place of love that is open and accepting. Is free to attend, not-for-profit and volunteer run. We ask for donations to cover our costs and support our community work. Has a community mission. Through our Action Heroes (you!), we will be a force for good.Is independent. We do not accept sponsorship or promote outside businesses, organizations or services Is here to stay. With your involvement, The Sunday Assembly will make the world a better place. We won’t tell you how to live, but will try to help you do it as well as you can; And remember point 1… The Sunday Assembly is a celebration of the one life we know we have./nA huge special thanks to everyone who has joined us in this adventure so far. We\'ll be at it on the second Sunday of every month./n11:30am-12:30 pm, followed by coffee and community./n(We\'ll be the ones laughing, learning and loving life.)</string>
+    <string name="about_banner_url">https://d3n8a8pro7vhmx.cloudfront.net/sundayassemblyla/pages/6/features/original/Crowdgoeswildslider.jpg?1424639729</string>
+    <string name="send">Send</string>
+    <string name="choose_a_photo_to_send">Choose a Photo to Send</string>
+    <string name="type_your_message_here">Type Your Message Here</string>
+    <string name="user_avatar">User Avatar</string>
+    <string name="future_featured_speaker">Future Featured Speaker</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="sunday_assembly_logo_description">Sunday Assembly Logo</string>
+    <string name="sign_up_btn_text">SIGN UP</string>
+    <string name="signed_in_snackbar">Signed in!</string>
+    <string name="sign_in_canceled_snackbar">Sign in canceled</string>
+    <string name="signed_in_success_message">You\'re signed in!</string>
+    <string name="no_network">You\'re not connected to a network!</string>
 </resources>
