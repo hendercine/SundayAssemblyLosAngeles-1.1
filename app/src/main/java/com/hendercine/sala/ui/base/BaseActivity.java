@@ -3,10 +3,10 @@
  * Copyright (c) Hendercine Productions and James Henderson 2018.
  * All rights reserved.
  *
- * Last modified 7/12/18 1:08 PM
+ * Last modified 9/21/18 1:48 PM
  */
 
-package com.hendercine.sala;
+package com.hendercine.sala.ui.base;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -16,6 +16,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
+
+import com.hendercine.sala.BuildConfig;
 
 import butterknife.Unbinder;
 import timber.log.Timber;
