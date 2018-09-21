@@ -10,15 +10,12 @@
     <string name="app_name">Sunday Assembly Los Angeles</string>
     <string name="logout">Log out</string>
     <!-- Facebook and Twitter Keys-->
-    <!-- sterces.xml will have to be decrypted to use and re-encrypted before
-     commiting to git -->
     <string name="facebook_application_id" translatable="false">@string/sala_facebook_app_id</string>
     <string name="facebook_login_protocol_scheme" translatable="false">@string/sala_fb_login_protocol_scheme</string>
     <string name="twitter_consumer_key" translatable="false">@string/sala_twitter_consumer_key</string>
     <string name="twitter_consumer_secret" translatable="false">@string/sala_twitter_consumer_secret</string>
 
-    <string name="title_activity_salamander_chat">SalamanderChatActivity
-    </string>
+    <string name="title_activity_salamander_chat">SalamanderChatActivity</string>
     <string name="action_settings">Settings</string>
     <string name="dummy_user_name">Username</string>
     <string name="nav_profile_picture_description">User\'s profile picture.</string>
