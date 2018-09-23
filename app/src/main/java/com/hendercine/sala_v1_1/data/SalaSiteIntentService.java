@@ -52,7 +52,7 @@ public class SalaSiteIntentService extends IntentService {
     private ArrayList<Assembly> picsArray;
 
     public SalaSiteIntentService() {
-        super("SalaSiteIntentService");
+        super(SalaSiteIntentService.class.getSimpleName());
     }
 
     @Override
