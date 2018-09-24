@@ -35,6 +35,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.hendercine.sala_v1_1.BuildConfig;
 import com.hendercine.sala_v1_1.R;
 import com.hendercine.sala_v1_1.models.Assembly;
+import com.hendercine.sala_v1_1.ui.aboutsala.AboutSalaFragment;
 import com.hendercine.sala_v1_1.ui.assemblies.AssembliesFragment;
 import com.hendercine.sala_v1_1.ui.base.BaseActivity;
 
@@ -45,7 +46,6 @@ import java.util.Arrays;
 
 import butterknife.BindString;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import timber.log.Timber;
 
 public class MainActivity extends BaseActivity {
@@ -80,7 +80,7 @@ public class MainActivity extends BaseActivity {
     private ActionBar mActionBar;
 
     private FragmentManager mFragmentManager;
-//    private AboutSalaFragment mAboutSalaFragment;
+    private AboutSalaFragment mAboutSalaFragment;
     private AssembliesFragment mAssemliesFragment;
 
     private boolean mIsTwoPane;
@@ -163,10 +163,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
         Timber.tag("LogMessage");
-
         // Initialize Firebase components
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mDatabaseRef = mFirebaseDatabase.getReference();
@@ -256,6 +253,11 @@ public class MainActivity extends BaseActivity {
                 }
             }
         };
+    }
+
+    @Override
+    protected int getActivityLayout() {
+        return R.layout.activity_main;
     }
 
     private void updateUI(FirebaseUser currentUser) {

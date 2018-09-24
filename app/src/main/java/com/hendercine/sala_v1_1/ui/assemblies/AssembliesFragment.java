@@ -31,7 +31,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
@@ -65,8 +64,6 @@ public class AssembliesFragment extends BaseFragment implements SiteServiceRecei
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_assemblies, container, false);
-        unbinder = ButterKnife.bind(this, rootView);
 
         mLinearLayoutManager = new LinearLayoutManager(getContext());
 
@@ -83,7 +80,12 @@ public class AssembliesFragment extends BaseFragment implements SiteServiceRecei
             mAssembliesRV.setAdapter(mAdapter);
         }
 
-        return rootView;
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    protected int getFragmentLayout() {
+        return R.layout.fragment_assemblies;
     }
 
     @Override

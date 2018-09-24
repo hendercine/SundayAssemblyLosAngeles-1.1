@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.hendercine.sala_v1_1.BuildConfig;
 
+import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import timber.log.Timber;
 
@@ -36,6 +37,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
         }
+        setContentView(getActivityLayout());
+        mUnbinder = ButterKnife.bind(this);
     }
 
     @Override
@@ -46,6 +49,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
+    protected abstract int getActivityLayout();
 
     public String getUid() {
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
