@@ -25,6 +25,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.transition.Fade;
+import android.transition.TransitionManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -653,6 +654,33 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setCollapsingToolbarBehavior() {
-
+        // Handle transition from expanded to collapsed and in between
+        if (mCollapsingToolbarLayout != null && mToolbar != null &&
+                mAppBarLayout != null) {
+            mCollapsingToolbarLayout.setTitleEnabled(true);
+            mCollapsingToolbarLayout.setTitle(mAppBarTitle);
+            mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+                @Override
+                public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                    Fade fade = new Fade();
+                    if (Math.abs(verticalOffset) == mAppBarLayout.getTotalScrollRange()) {
+                        // Collapsed
+                        TransitionManager.beginDelayedTransition
+                                (mAppBarLayout, fade);
+                        mToolbar.setVisibility(View.VISIBLE);
+                    } else if (verticalOffset == 0) {
+                        // Expanded
+                        mToolbar.setVisibility(View.GONE);
+                    } else {
+                        // mid-scroll
+                        TransitionManager.beginDelayedTransition(mToolbar, fade);
+                    }
+                }
+            });
+        }
+        // Load Backdrop Image
+        Glide.with(this)
+                .load(mAppBarImageUrl)
+                .into(collapsingToolbarBackDrop);
     }
 }
