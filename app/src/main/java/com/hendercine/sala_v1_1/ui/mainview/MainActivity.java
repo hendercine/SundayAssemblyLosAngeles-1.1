@@ -31,6 +31,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
@@ -68,6 +69,7 @@ public class MainActivity extends BaseActivity {
     private static final String USER_PHOTO_URL = "userPhotoUrl";
     private static final String CURRENT_USER = "current_user";
     private static final String ASSEMBLIES = "assemblies";
+    private static final String USERS = "users";
 
     private String mAppBarTitle;
     private String mAppBarImageUrl;
@@ -351,7 +353,7 @@ public class MainActivity extends BaseActivity {
         String displayName = currentUser.getDisplayName();
         String userMail = currentUser.getEmail();
 
-        mDatabaseRef.child("users").child(userId)
+        mDatabaseRef.child(USERS).child(userId)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -383,12 +385,51 @@ public class MainActivity extends BaseActivity {
     }
 
     private void updateUI(FirebaseUser currentUser) {
-        
+
+        if (currentUser != null) {
+            // Signed in
+            if (mUsernameHeaderTV != null && mUserNavHeaderIV != null) {
+                mUsernameHeaderTV.setText(currentUser.getDisplayName());
+                if (currentUser.getPhotoUrl() != null) {
+                    mUserPhotoUrl = currentUser.getPhotoUrl().toString();
+                    Glide.with(this)
+                            .load(mUserPhotoUrl)
+                            .into(mUserNavHeaderIV);
+                } else {
+                    Glide.with(this)
+                            .load(R.drawable.baseline_account_circle_48)
+                            .into(mUserNavHeaderIV);
+                }
+            }
+        } else {
+            // Signed out
+            if (mUsernameHeaderTV != null && mUserNavHeaderIV != null) {
+                mUsernameHeaderTV.setText(R.string.dummy_user_name);
+                Glide.with(this)
+                        .load(R.drawable.sala_logo_grass)
+                        .into(mUserNavHeaderIV);
+            }
+        }
 
     }
 
-    private void writeNewUser(String userId, String displayName, String userMail) {
+    private void writeNewUser(String userId, String displayName, String email) {
+        User user = new User();
+        user.setUserId(userId);
+        user.setUsername(displayName);
+        user.setEmail(email);
+        mDatabaseRef.child(USERS).child(userId).setValue(user);
+    }
 
+    public void headerLogout(View view) {
+        if (view != null) {
+            signOut();
+        }
+    }
+
+    private void signOut() {
+        AuthUI.getInstance().signOut(MainActivity.this);
+        mAssembliesList.clear();
     }
 
     private void setCollapsingToolbarBehavior() {
