@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 import com.hendercine.sala_v1_1.R;
 import com.hendercine.sala_v1_1.ui.base.BaseFragment;
 /**
- * SundayAssemblyLosAngeles-1.1 created by artemis on 9/23/18.
+ * SundayAssemblyLosAngeles-1.1 created by James Henderson on 9/23/18.
  */
 public class AboutSalaFragment extends BaseFragment {
 
@@ -28,7 +28,6 @@ public class AboutSalaFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 

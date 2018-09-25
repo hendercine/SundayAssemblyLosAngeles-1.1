@@ -8,6 +8,7 @@
 
 package com.hendercine.sala_v1_1.ui.mainview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,6 +22,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -28,13 +32,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.FirebaseUserMetadata;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.hendercine.sala_v1_1.BuildConfig;
 import com.hendercine.sala_v1_1.R;
 import com.hendercine.sala_v1_1.models.Assembly;
+import com.hendercine.sala_v1_1.models.User;
 import com.hendercine.sala_v1_1.ui.aboutsala.AboutSalaFragment;
 import com.hendercine.sala_v1_1.ui.assemblies.AssembliesFragment;
 import com.hendercine.sala_v1_1.ui.base.BaseActivity;
@@ -43,6 +53,7 @@ import net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 import butterknife.BindString;
 import butterknife.BindView;
@@ -260,11 +271,123 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    private void updateUI(FirebaseUser currentUser) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            IdpResponse response = IdpResponse.fromResultIntent(data);
+            if (resultCode == RESULT_OK) {
+                showSnackBar(R.string.signed_in_snackbar);
+                updateUI(mAuth.getCurrentUser());
+            } else if (response == null) {
+                showSnackBar(R.string.sign_in_canceled_snackbar);
+                finish();
+            }
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        return !mIsTwoPane;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int i = item.getItemId();
+        if (i == R.id.logout_menu) {
+            AuthUI.getInstance().signOut(this);
+            return true;
+        } else {
+            return mToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        outState.putParcelable(CURRENT_USER, mCurrentUser);
+        outState.putString(USER_ID, mUserId);
+        outState.putString(USER_NAME, mUsername);
+        outState.putString(USER_PHOTO_URL, mUserPhotoUrl);
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mAuth.addAuthStateListener(mAuthStateListener);
+        updateUI(mAuth.getCurrentUser());
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mAuth.removeAuthStateListener(mAuthStateListener);
     }
 
     private void checkIfNewUser(FirebaseUser currentUser) {
+        String userId = getUid();
+        String displayName = currentUser.getDisplayName();
+        String userMail = currentUser.getEmail();
+
+        mDatabaseRef.child("users").child(userId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        User user1 = dataSnapshot.getValue(User.class);
+                        if (user1 == null) {
+                            writeNewUser(userId, displayName, userMail);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+        FirebaseUserMetadata metadata = Objects.requireNonNull(
+                mAuth.getCurrentUser()).getMetadata();
+
+        if (metadata != null) {
+            if (metadata.getCreationTimestamp() == metadata.getLastSignInTimestamp()) {
+                // The user is new, show them a fancy intro screen!
+                writeNewUser(userId, displayName, userMail);
+                showToast("Welcome " + displayName + "!");
+            } else {
+                // This is an existing user, show them a welcome back screen.
+                showToast("Welcome back " + displayName + "!");
+            }
+        }
+
+    }
+
+    private void updateUI(FirebaseUser currentUser) {
+        
+
+    }
+
+    private void writeNewUser(String userId, String displayName, String userMail) {
 
     }
 
