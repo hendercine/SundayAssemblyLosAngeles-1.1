@@ -16,12 +16,15 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.transition.Fade;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,6 +33,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.auth.AuthUI;
@@ -432,15 +436,223 @@ public class MainActivity extends BaseActivity {
         mAssembliesList.clear();
     }
 
-    private void setCollapsingToolbarBehavior() {
-
-    }
-
     private void activateDrawerItems() {
+        // Handle navigation drawer click events
+        if (mNavView != null) {
+            mNavHeaderView = mNavView.getHeaderView(0);
+            mNavLogoutBtn = mNavHeaderView.findViewById(R.id.logout_btn);
+            if (mNavLogoutBtn != null) {
+                mNavLogoutBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        headerLogout(v);
+                    }
+                });
+            }
+            mUsernameHeaderTV = mNavHeaderView.findViewById(R.id.username_nav_header_text_view);
+            mUserNavHeaderIV = mNavHeaderView.findViewById(R.id.user_nav_header_img_view);
+            updateUI(mAuth.getCurrentUser());
+            mNavView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                    menuItem.setChecked(true);
+                    if (mDrawer != null) {
+                        mDrawer.closeDrawer(GravityCompat.START, true);
+                    }
+                    // TODO: Add code here to update the UI based on the item selected
+                    // For example, swap UI fragments here
+                    mFragment = null;
+                    mBundle = new Bundle();
+                    int position = menuItem.getItemId();
+                    if (position == R.id.about_nav) {
+                        mFragment = new AboutSalaFragment();
+                        mAppBarTitle = mAboutTitle;
+                        mAppBarImageUrl = mAboutBannerUrl;
+                    } else if (position == R.id.assemblies_nav) {
+//                        mFragment = new AssembliesFragment();
+                        mAppBarTitle = mAssemblyDateAndTheme;
+                        mAboutBannerUrl = mAssemblyBackDrop;
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "This will display AssembliesFragment",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    } else if (position == R.id.program_nav) {
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "This will display ProgramFragment",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    } else if (position == R.id.lyrics_nav) {
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "This will display LyricsFragment",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    } else if (position == R.id.speaker_nav) {
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "This will display SpeakerFragment",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    } else if (position == R.id.help_often_nav) {
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "This will display HelpOftenFragment",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    } else if (position == R.id.live_better_nav) {
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "This will display LiveBetterFragment",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    } else if (position == R.id.chat_nav) {
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "This will display ChatFragment",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                        // TODO: Create intents for Instagram, Facebook and Twitter
+                    } else if (position == R.id.insta_link_nav) {
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "This will open Instagram",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    } else if (position == R.id.facebook_link_nav) {
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "This will open Facebook",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    } else if (position == R.id.twitter_link_nav) {
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "This will open Twitter",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    } else if (position == R.id.site_link_nav) {
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "This will display WebsiteFragment",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    } else if (position == R.id.logout_nav) {
+                        signOut();
+                        return true;
+                    }
+                    if (mFragment != null) {
+                        Fade fade = new Fade();
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.content_frame, mFragment)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                    mDrawer.closeDrawer(GravityCompat.START, true);
+                    return true;
+                }
+            });
+        }
 
     }
 
     private void activateSideBarItems() {
+        // Handle two-pane side bar drawer click events
+        mSideBarAdapter.setClickListener(new SideBarRVAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                // TODO: Add code here to update the UI based on the item selected
+                // For example, swap UI fragments here
+                mFragment = null;
+                mBundle = new Bundle();
+                if (position == mSideBarAdapter.getItemId(0)) {
+                    mFragment = new AboutSalaFragment();
+                    mAppBarTitle = mAboutTitle;
+                    mAppBarImageUrl = mAboutBannerUrl;
+                } else if (position == mSideBarAdapter.getItemId(1)) {
+                    mFragment = new AssembliesFragment();
+                    mAppBarTitle = mAboutTitle;
+                    mAppBarImageUrl = mAboutBannerUrl;
+                } else if (position == mSideBarAdapter.getItemId(2)) {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "This will display ProgramFragment",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                } else if (position == mSideBarAdapter.getItemId(3)) {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "This will display LyricsFragment",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                } else if (position == mSideBarAdapter.getItemId(4)) {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "This will display SpeakerFragment",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                } else if (position == mSideBarAdapter.getItemId(5)) {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "This will display HelpOftenFragment",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                } else if (position == mSideBarAdapter.getItemId(6)) {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "This will display LiveBetterFragment",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                } else if (position == mSideBarAdapter.getItemId(7)) {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "This will display ChatFragment",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                    // TODO: Create intents for Instagram, Facebook and Twitter
+                } else if (position == mSideBarAdapter.getItemId(8)) {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "This will open Instagram",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                } else if (position == mSideBarAdapter.getItemId(9)) {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "This will open Facebook",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                } else if (position == mSideBarAdapter.getItemId(10)) {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "This will open Twitter",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                } else if (position == mSideBarAdapter.getItemId(11)) {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "This will display WebsiteFragment",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                } else if (position == mSideBarAdapter.getItemId(12)) {
+                    signOut();
+                }
+                if (mFragment != null) {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.content_frame, mFragment)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                            .addToBackStack(null)
+                            .commit();
+                }
+            }
+        });
+    }
+
+    private void setCollapsingToolbarBehavior() {
 
     }
 }
