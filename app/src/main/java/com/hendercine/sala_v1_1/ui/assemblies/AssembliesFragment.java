@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,7 +24,6 @@ import com.hendercine.sala_v1_1.R;
 import com.hendercine.sala_v1_1.data.SalaSiteIntentService;
 import com.hendercine.sala_v1_1.data.SiteServiceReceiver;
 import com.hendercine.sala_v1_1.models.Assembly;
-import com.hendercine.sala_v1_1.ui.base.BaseFragment;
 
 import org.parceler.Parcels;
 
@@ -31,12 +31,13 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
  * SundayAssemblyLosAngeles-1.1 created by artemis on 9/23/18.
  */
-public class AssembliesFragment extends BaseFragment implements SiteServiceReceiver.Listener {
+public class AssembliesFragment extends Fragment implements SiteServiceReceiver.Listener {
 
     // Base strings to run through Jsoup
     private static final String ASSEMBLIES_URL = "http://www.sundayassemblyla.org";
@@ -46,25 +47,27 @@ public class AssembliesFragment extends BaseFragment implements SiteServiceRecei
     private static final String REC = "rec";
     private static final String POSITION_STATE_KEY = "scroll_position";
 
-    private Unbinder unbinder;
     private ArrayList<Assembly> mAssembliesList;
     private ArrayList<Assembly> mAssemblyArrayList;
     private Assembly mAssembly;
     private int mScrollPosition;
 
-    @BindView(R.id.assemblies_recycler_view)
-    RecyclerView mAssembliesRV;
     private AssembliesRVAdapter mAdapter;
     private LinearLayoutManager mLinearLayoutManager;
+    private Unbinder mUnbinder;
+
+    @BindView(R.id.assemblies_recycler_view)
+    RecyclerView mAssembliesRV;
 
     public AssembliesFragment() {
         // Required empty public constructor
     }
 
     @Nullable
-    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        View rootView = inflater.inflate(R.layout.fragment_assemblies, container, false);
+        mUnbinder = ButterKnife.bind(this, rootView);
         mLinearLayoutManager = new LinearLayoutManager(getContext());
 
         if (savedInstanceState == null) {
@@ -80,13 +83,13 @@ public class AssembliesFragment extends BaseFragment implements SiteServiceRecei
             mAssembliesRV.setAdapter(mAdapter);
         }
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return rootView;
     }
 
-    @Override
-    protected int getFragmentLayout() {
-        return R.layout.fragment_assemblies;
-    }
+//    @Override
+//    protected int getFragmentLayout() {
+//        return R.layout.fragment_assemblies;
+//    }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
@@ -94,6 +97,12 @@ public class AssembliesFragment extends BaseFragment implements SiteServiceRecei
         mScrollPosition = mLinearLayoutManager.findFirstCompletelyVisibleItemPosition();
         outState.putInt(POSITION_STATE_KEY, mScrollPosition);
         outState.putParcelable(ASSEMBLIES, Parcels.wrap(mAssembliesList));
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mUnbinder.unbind();
     }
 
     @Override

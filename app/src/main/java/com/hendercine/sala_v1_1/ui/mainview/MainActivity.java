@@ -233,10 +233,10 @@ public class MainActivity extends BaseActivity {
 
         if (savedInstanceState == null) {
             mFragmentManager = getSupportFragmentManager();
-            mAssemliesFragment = new AssembliesFragment();
+            mAboutSalaFragment = new AboutSalaFragment();
             mFragmentManager
                     .beginTransaction()
-                    .add(mContentFrame.getId(), mAssemliesFragment)
+                    .add(mContentFrame.getId(), mAboutSalaFragment)
                     .commit();
         }
 
@@ -470,14 +470,14 @@ public class MainActivity extends BaseActivity {
                         mAppBarTitle = mAboutTitle;
                         mAppBarImageUrl = mAboutBannerUrl;
                     } else if (position == R.id.assemblies_nav) {
-//                        mFragment = new AssembliesFragment();
+                        mFragment = new AssembliesFragment();
                         mAppBarTitle = mAssemblyDateAndTheme;
                         mAboutBannerUrl = mAssemblyBackDrop;
-                        Toast.makeText(
-                                getApplicationContext(),
-                                "This will display AssembliesFragment",
-                                Toast.LENGTH_SHORT
-                        ).show();
+//                        Toast.makeText(
+//                                getApplicationContext(),
+//                                "This will display AssembliesFragment",
+//                                Toast.LENGTH_SHORT
+//                        ).show();
                     } else if (position == R.id.program_nav) {
                         Toast.makeText(
                                 getApplicationContext(),
@@ -548,7 +548,7 @@ public class MainActivity extends BaseActivity {
                         getSupportFragmentManager()
                                 .beginTransaction()
                                 .replace(R.id.content_frame, mFragment)
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+//                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                                 .addToBackStack(null)
                                 .commit();
                     }

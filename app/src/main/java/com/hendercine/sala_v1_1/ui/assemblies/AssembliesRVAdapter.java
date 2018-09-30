@@ -29,7 +29,7 @@ public class AssembliesRVAdapter extends RecyclerView.Adapter<AssembliesRVAdapte
 
     private ArrayList<Assembly> mAssemblies;
 
-    public AssembliesRVAdapter(ArrayList<Assembly> assemblies) {
+    AssembliesRVAdapter(ArrayList<Assembly> assemblies) {
         this.mAssemblies = assemblies;
     }
 
