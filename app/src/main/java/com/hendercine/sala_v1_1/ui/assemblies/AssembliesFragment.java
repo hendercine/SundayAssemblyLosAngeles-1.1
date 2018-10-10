@@ -113,6 +113,9 @@ public class AssembliesFragment extends Fragment implements SiteServiceReceiver.
         for (int i = 0; i < assemblies.size(); i++) {
             mAssembly = new Assembly();
             mAssembly.setAssemblyDate(assemblies.get(i).getAssemblyDate());
+            mAssembly.setAssemblyTheme(assemblies.get(i).getAssemblyTheme());
+            mAssembly.setAssemblyDescription(assemblies.get(i).getAssemblyDescription());
+            mAssembly.setAssemblyPhotoUrl(assemblies.get(i).getAssemblyPhotoUrl());
 
             mAssembliesList.add(mAssembly);
         }
