@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,6 +23,7 @@ import com.hendercine.sala_v1_1.R;
 import com.hendercine.sala_v1_1.data.SalaSiteIntentService;
 import com.hendercine.sala_v1_1.data.SiteServiceReceiver;
 import com.hendercine.sala_v1_1.models.Assembly;
+import com.hendercine.sala_v1_1.ui.base.BaseFragment;
 
 import org.parceler.Parcels;
 
@@ -37,7 +37,8 @@ import butterknife.Unbinder;
 /**
  * SundayAssemblyLosAngeles-1.1 created by artemis on 9/23/18.
  */
-public class AssembliesFragment extends Fragment implements SiteServiceReceiver.Listener {
+public class AssembliesFragment extends BaseFragment implements
+                                                  SiteServiceReceiver.Listener {
 
     // Base strings to run through Jsoup
     private static final String ASSEMBLIES_URL = "http://www.sundayassemblyla.org";

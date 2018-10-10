@@ -12,13 +12,9 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +22,6 @@ import com.hendercine.sala_v1_1.BuildConfig;
 
 import java.util.Objects;
 
-import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import timber.log.Timber;
 
@@ -46,13 +41,13 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(getFragmentLayout(), container, false);;
-        mUnbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
+//    @Nullable
+//    @Override
+//    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//        View rootView = inflater.inflate(getFragmentLayout(), container, false);;
+//        mUnbinder = ButterKnife.bind(this, rootView);
+//        return rootView;
+//    }
 
     @Override
     public void onAttach(Context context) {
@@ -67,18 +62,18 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mUnbinder.unbind();
+//        mUnbinder.unbind();
     }
 
-    protected abstract int getFragmentLayout();
+//    protected abstract int getFragmentLayout();
 
     public String getUid() {
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
-    public void setUnbinder(Unbinder unbinder) {
-        mUnbinder = unbinder;
-    }
+//    public void setUnbinder(Unbinder unbinder) {
+//        mUnbinder = unbinder;
+//    }
 
     public void showSnackBar(int resId) {
         Snackbar.make(
