@@ -62,11 +62,138 @@ public class SalaSiteIntentService extends IntentService {
             mFirebaseDatabase = FirebaseDatabase.getInstance();
             mDatabaseRef = mFirebaseDatabase.getReference().child(ASSEMBLIES);
 
-            // Check for network
-            if (!BaseActivity.isNetworkAvailable(this))
-                Timber.d("Get html");
+//            // Check for network
+//            if (!BaseActivity.isNetworkAvailable(this))
+//                Timber.d("Get html");
+//
+//            try {
+////                String assemblyEventName;
+//////                String assemblyThemeLine;
+////                String assemblyDescription;
+////                String assemblyPhotoUrl;
+////
+////                Document doc = Jsoup.connect(ASSEMBLIES_URL).get();
+////                Elements assemblies = doc.getElementsByClass("event-list-item");
+//////                Elements titles = assemblies.
+//////                Elements themes = assemblies.select("strong");
+//////                Elements descriptions = assemblies.select("span");
+//////                Elements photoSources = assemblies.getElementsByClass
+//////                        ("event-wrap").select("img");
+////
+////                mAssemblyArrayList = new ArrayList<>();
+////
+////                for (Element assembly : assemblies) {
+////                    mAssembly = new Assembly();
+////                    Element eventName = assembly.getElementsByClass
+////                            ("event-name").first();
+//////                    Element themeLine = ;
+////                    Element descriptionText = assembly.getElementsByClass
+////                            (EVENT_DETAILS).first();
+////                    Element eventPhotoUrl = descriptionText.select("img")
+////                            .first();
+////                    assemblyDescription = descriptionText.toString();
+////                    mAssembly.setAssemblyDate(eventName.text());
+////                    mAssembly.setAssemblyDescription(assemblyDescription);
+////                    mAssembly.setAssemblyPhotoUrl(eventPhotoUrl.attr("src"));
+////                    mAssemblyArrayList.add(mAssembly);
+////                }
+////                titleArray = new ArrayList<>();
+////                themeArray = new ArrayList<>();
+////                descArray = new ArrayList<>();
+////                picsArray = new ArrayList<>();
+////
+////                for (Element title : titles) {
+////                    mAssembly = new Assembly();
+////                    assemblyEventName = title.text();
+////                    mAssembly.setAssemblyDate(assemblyEventName);
+////                    titleArray.add(mAssembly);
+////                }
+////
+////                for (Element theme : themes) {
+////                    mAssembly = new Assembly();
+////                    assemblyThemeLine = theme.text();
+////                    mAssembly.setAssemblyTheme(assemblyThemeLine);
+////                    themeArray.add(mAssembly);
+////                }
+////
+////                for (Element description : descriptions) {
+////                    mAssembly = new Assembly();
+////                    assemblyDescription = description.text();
+////                    mAssembly.setAssemblyDescription(assemblyDescription);
+////                    descArray.add(mAssembly);
+////                }
+////
+////                for (Element photoSource : photoSources) {
+////                    mAssembly = new Assembly();
+////                    assemblyPhotoUrl = photoSource.attr("abs:src");
+////                    mAssembly.setAssemblyPhotoUrl(assemblyPhotoUrl);
+////                    picsArray.add(mAssembly);
+////                }
+////
+////                Map<String, Object> assemblyMaps = new HashMap<>();
+////                assemblyMaps.put("assembly_date", titleArray);
+////                assemblyMaps.put("assembly_description", descArray);
+////                assemblyMaps.put("assembly_photo_url", picsArray);
+////                assemblyMaps.put("assembly_theme", themeArray);
+////
+////                mAssemblyArrayList.addAll(titleArray);
+////                mDatabaseRef.updateChildren(assemblyMaps);
+//////                    mAssemblyArrayList.addAll(themeArray);
+//////                    mAssemblyArrayList.addAll(descArray);*-+
+////
+//////                    mAssemblyArrayList.addAll(picsArray);
+////
+////                Timber.i(
+////                        "Is there a title string here in svc: '%s'",
+////                        titleArray.get(0).getAssemblyDate()
+////                );
+////                Timber.i(
+////                        "Is there a title string here in svc: '%s'",
+////                        mAssemblyArrayList.get(1).getAssemblyDate()
+////                );
+////                Timber.i(
+////                        "Is there a title string here in svc: '%s'",
+////                        mAssemblyArrayList.get(2).getAssemblyDate()
+////                );
+////                Timber.i(
+////                        "Is there a title string here in svc: '%s'",
+////                        mAssemblyArrayList.get(3).getAssemblyDate()
+////                );
+////                Timber.i(
+////                        "Is there a title string here in svc: '%s'",
+////                        mAssemblyArrayList.get(4).getAssemblyDate()
+////                );
+////                Timber.i(
+////                        "Is there a theme string here in svc: '%s'",
+////                        themeArray.get(0).getAssemblyTheme()
+////                );
+////                Timber.i(
+////                        "Is there a description string here in svc: '%s'",
+////                        descArray.get(0).getAssemblyDescription()
+////                );
+////                Timber.i(
+////                        "Is there a string photo url here in svc: '%s'",
+////                        picsArray.get(0).getAssemblyPhotoUrl()
+////                );
+//
+            getAssemblyArrayList();
+            Bundle args = new Bundle();
+            args.putParcelable(ASSEMBLIES, Parcels.wrap(mAssemblyArrayList));
+            rec.send(0, args);
+//
+//            } catch (Exception e) {
+//                Timber.e(e, "Something went wrong in the background");
+//                e.printStackTrace();
+//            }
+        }
+    }
 
-            try {
+    public ArrayList<Assembly> getAssemblyArrayList() {
+        // Check for network
+        if (!BaseActivity.isNetworkAvailable(this))
+            Timber.d("Get html");
+
+        try {
                 String assemblyEventName;
 //                String assemblyThemeLine;
                 String assemblyDescription;
@@ -97,56 +224,12 @@ public class SalaSiteIntentService extends IntentService {
                     mAssembly.setAssemblyPhotoUrl(eventPhotoUrl.attr("src"));
                     mAssemblyArrayList.add(mAssembly);
                 }
-//                titleArray = new ArrayList<>();
-//                themeArray = new ArrayList<>();
-//                descArray = new ArrayList<>();
-//                picsArray = new ArrayList<>();
-//
-//                for (Element title : titles) {
-//                    mAssembly = new Assembly();
-//                    assemblyEventName = title.text();
-//                    mAssembly.setAssemblyDate(assemblyEventName);
-//                    titleArray.add(mAssembly);
-//                }
-//
-//                for (Element theme : themes) {
-//                    mAssembly = new Assembly();
-//                    assemblyThemeLine = theme.text();
-//                    mAssembly.setAssemblyTheme(assemblyThemeLine);
-//                    themeArray.add(mAssembly);
-//                }
-//
-//                for (Element description : descriptions) {
-//                    mAssembly = new Assembly();
-//                    assemblyDescription = description.text();
-//                    mAssembly.setAssemblyDescription(assemblyDescription);
-//                    descArray.add(mAssembly);
-//                }
-//
-//                for (Element photoSource : photoSources) {
-//                    mAssembly = new Assembly();
-//                    assemblyPhotoUrl = photoSource.attr("abs:src");
-//                    mAssembly.setAssemblyPhotoUrl(assemblyPhotoUrl);
-//                    picsArray.add(mAssembly);
-//                }
-//
-//                Map<String, Object> assemblyMaps = new HashMap<>();
-//                assemblyMaps.put("assembly_date", titleArray);
-//                assemblyMaps.put("assembly_description", descArray);
-//                assemblyMaps.put("assembly_photo_url", picsArray);
-//                assemblyMaps.put("assembly_theme", themeArray);
-//
-//                mAssemblyArrayList.addAll(titleArray);
-//                mDatabaseRef.updateChildren(assemblyMaps);
-////                    mAssemblyArrayList.addAll(themeArray);
-////                    mAssemblyArrayList.addAll(descArray);*-+
-//
-////                    mAssemblyArrayList.addAll(picsArray);
-//
-//                Timber.i(
-//                        "Is there a title string here in svc: '%s'",
-//                        titleArray.get(0).getAssemblyDate()
-//                );
+
+
+                Timber.i(
+                        "Is there a title string here in svc: '%s'",
+                        mAssemblyArrayList.get(0).getAssemblyDate()
+                );
 //                Timber.i(
 //                        "Is there a title string here in svc: '%s'",
 //                        mAssemblyArrayList.get(1).getAssemblyDate()
@@ -176,14 +259,10 @@ public class SalaSiteIntentService extends IntentService {
 //                        picsArray.get(0).getAssemblyPhotoUrl()
 //                );
 
-                Bundle args = new Bundle();
-                args.putParcelable(ASSEMBLIES, Parcels.wrap(mAssemblyArrayList));
-                rec.send(0, args);
-
-            } catch (Exception e) {
-                Timber.e(e, "Something went wrong in the background");
-                e.printStackTrace();
-            }
+        } catch (Exception e) {
+            Timber.e(e, "Something went wrong in the background");
+            e.printStackTrace();
+        }
+            return mAssemblyArrayList;
         }
     }
-}

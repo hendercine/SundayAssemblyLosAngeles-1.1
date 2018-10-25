@@ -7,45 +7,53 @@
   ~ Last modified 9/24/18 1:52 PM
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/mission_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/our_mission_header"/>
+    <LinearLayout
 
-    <TextView
-        android:id="@+id/mission_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/mission_statement"/>
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/together_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/together_we_will_header"/>
+        <TextView
+            android:id="@+id/mission_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/our_mission_header"/>
 
-    <TextView
-        android:id="@+id/together_body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/live_help_wonder"/>
+        <TextView
+            android:id="@+id/mission_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mission_statement"/>
 
-    <TextView
-        android:id="@+id/the_assembly_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/the_sunday_assembly_header"/>
+        <TextView
+            android:id="@+id/together_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/together_we_will_header"/>
 
-    <TextView
-        android:id="@+id/the_assembly_body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/the_assembly_body_text"/>
+        <TextView
+            android:id="@+id/together_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/live_help_wonder"/>
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/the_assembly_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/the_sunday_assembly_header"/>
+
+        <TextView
+            android:id="@+id/the_assembly_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/the_assembly_body_text"/>
+
+    </LinearLayout>
+</ScrollView>
+

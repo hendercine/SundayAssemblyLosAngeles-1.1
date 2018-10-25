@@ -12,19 +12,19 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.hendercine.sala_v1_1.R;
+import com.hendercine.sala_v1_1.ui.base.BaseFragment;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 /**
  * SundayAssemblyLosAngeles-1.1 created by James Henderson on 9/23/18.
  */
-public class AboutSalaFragment extends Fragment {
+public class AboutSalaFragment extends BaseFragment {
 
     private Unbinder mUnbinder;
 
