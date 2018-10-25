@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '28.0.2'
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.hendercine.sala_v1_1"
         minSdkVersion 19
@@ -64,11 +64,11 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.11.3'
 
     // Firebase
-    implementation "com.google.firebase:firebase-core:$firebaseVersion"
-    implementation "com.google.firebase:firebase-database:16.0.2"
+    implementation 'com.google.firebase:firebase-core:16.0.4'
+    implementation 'com.google.firebase:firebase-database:16.0.3'
 //    implementation "com.google.firebase:firebase-storage:$firebaseVersion"
-    implementation "com.google.firebase:firebase-auth:$firebaseVersion"
-    implementation 'com.google.firebase:firebase-messaging:17.3.2'
+    implementation 'com.google.firebase:firebase-auth:16.0.5'
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
 
     // Firebase UI Database
     implementation 'com.firebaseui:firebase-ui-database:4.0.1'
@@ -88,7 +88,7 @@ dependencies {
     implementation 'android.arch.core:runtime:1.1.1'
 
     // Google Services
-    implementation 'com.google.android.gms:play-services-auth:16.0.0'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
 
     // Espresso and testing-only dependencies
     testImplementation 'junit:junit:4.12'
