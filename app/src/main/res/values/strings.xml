@@ -21,7 +21,7 @@
     <string name="nav_profile_picture_description">User\'s profile picture.</string>
     <string name="about_nav_title">About</string>
     <string name="program_nav_title">Program</string>
-    <string name="lyrics_nav_title">Lyrics</string>
+    <string name="musician_nav_title">Music</string>
     <string name="speaker_bio_nav_title">Speaker Bio</string>
     <string name="assemblies_nav_title">Assemblies</string>
     <string name="help_often_nav_title">Help Often</string>

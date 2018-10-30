@@ -156,8 +156,8 @@ public class MainActivity extends BaseActivity {
     String mAboutSideBar;
     @BindString(R.string.program_nav_title)
     String mProgramSidebar;
-    @BindString(R.string.lyrics_nav_title)
-    String mLyricsSideBar;
+//    @BindString(R.string.lyrics_nav_title)
+//    String mLyricsSideBar;
     @BindString(R.string.speaker_bio_nav_title)
     String mSpeakerSideBar;
     @BindString(R.string.assemblies_nav_title)
@@ -166,16 +166,16 @@ public class MainActivity extends BaseActivity {
     String mHelpSideBar;
     @BindString(R.string.live_better_nav_title)
     String mLiveSideBar;
-    @BindString(R.string.salamander_chat_nav_title)
-    String mChatSideBar;
-    @BindString(R.string.instagram_nav_title)
-    String mInstaSideBar;
-    @BindString(R.string.facebook_nav_title)
-    String mFacebookSideBar;
-    @BindString(R.string.twitter_nav_title)
-    String mTwitterSideBar;
-    @BindString(R.string.sala_on_the_web_nav_title)
-    String mWebsiteSideBar;
+//    @BindString(R.string.salamander_chat_nav_title)
+//    String mChatSideBar;
+//    @BindString(R.string.instagram_nav_title)
+//    String mInstaSideBar;
+//    @BindString(R.string.facebook_nav_title)
+//    String mFacebookSideBar;
+//    @BindString(R.string.twitter_nav_title)
+//    String mTwitterSideBar;
+//    @BindString(R.string.sala_on_the_web_nav_title)
+//    String mWebsiteSideBar;
     @BindString(R.string.logout_nav_title)
     String mLogoutSideBar;
 
@@ -205,10 +205,18 @@ public class MainActivity extends BaseActivity {
         // Setup Two-pane sidebar "drawer"
         if (mIsTwoPane && mSideBarRecyclerView != null) {
             mSideBarArray = new String[]{
-                    mAboutSideBar, mAssembliesSideBar, mProgramSidebar,
-                    mLyricsSideBar, mSpeakerSideBar, mHelpSideBar,
-                    mLiveSideBar, mChatSideBar, mInstaSideBar,
-                    mFacebookSideBar, mTwitterSideBar, mWebsiteSideBar,
+                    mAboutSideBar,
+                    mAssembliesSideBar,
+                    mProgramSidebar,
+//                    mLyricsSideBar,
+                    mSpeakerSideBar,
+                    mHelpSideBar,
+                    mLiveSideBar,
+//                    mChatSideBar,
+//                    mInstaSideBar,
+//                    mFacebookSideBar,
+//                    mTwitterSideBar,
+//                    mWebsiteSideBar,
                     mLogoutSideBar};
             mSideBarRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             mSideBarAdapter = new SideBarRVAdapter(mSideBarArray);
@@ -486,7 +494,7 @@ public class MainActivity extends BaseActivity {
                                 "This will display ProgramFragment",
                                 Toast.LENGTH_SHORT
                         ).show();
-                    } else if (position == R.id.lyrics_nav) {
+                    } else if (position == R.id.musician_nav) {
                         Toast.makeText(
                                 getApplicationContext(),
                                 "This will display LyricsFragment",

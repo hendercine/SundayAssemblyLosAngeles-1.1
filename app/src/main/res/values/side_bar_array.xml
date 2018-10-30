@@ -11,7 +11,7 @@
     <string-array name="side_bar_array">
         <item android:title="@string/about_nav_title"/>
         <item android:title="@string/program_nav_title"/>
-        <item android:title="@string/lyrics_nav_title"/>
+        <item android:title="@string/musician_nav_title"/>
         <item android:title="@string/speaker_bio_nav_title"/>
         <item android:title="@string/assemblies_nav_title"/>
         <item android:title="@string/help_often_nav_title"/>
