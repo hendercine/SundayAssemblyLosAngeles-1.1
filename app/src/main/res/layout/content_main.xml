@@ -16,8 +16,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:padding="8dp"
-
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.mainview.MainActivity"
     tools:showIn="@layout/app_bar_main"/>
-
-    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->

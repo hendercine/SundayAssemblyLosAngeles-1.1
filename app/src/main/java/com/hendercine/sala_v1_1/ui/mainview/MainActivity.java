@@ -65,6 +65,7 @@ import butterknife.BindString;
 import butterknife.BindView;
 import timber.log.Timber;
 
+@SuppressWarnings("Convert2Lambda")
 public class MainActivity extends BaseActivity {
 
     public static final int RC_SIGN_IN = 237;
@@ -212,9 +213,9 @@ public class MainActivity extends BaseActivity {
             mSideBarRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             mSideBarAdapter = new SideBarRVAdapter(mSideBarArray);
             mSideBarRecyclerView.setAdapter(mSideBarAdapter);
-
             activateSideBarItems();
         } else {
+            // Set home button and nav drawer
             if (mActionBar != null) {
                 mActionBar.setDisplayHomeAsUpEnabled(true);
                 mActionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
@@ -230,18 +231,19 @@ public class MainActivity extends BaseActivity {
 
             activateDrawerItems();
         }
-
+        // Set app start fragment
         if (savedInstanceState == null) {
             mFragmentManager = getSupportFragmentManager();
             mAboutSalaFragment = new AboutSalaFragment();
             mFragmentManager
                     .beginTransaction()
-                    .add(mContentFrame.getId(), mAboutSalaFragment)
+                    .replace(mContentFrame.getId(), mAboutSalaFragment)
                     .commit();
         }
 
         setCollapsingToolbarBehavior();
 
+        // Setup sign-in flow
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -547,7 +549,7 @@ public class MainActivity extends BaseActivity {
                         Fade fade = new Fade();
                         getSupportFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.content_frame, mFragment)
+                                .add(R.id.content_frame, mFragment)
 //                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                                 .addToBackStack(null)
                                 .commit();
