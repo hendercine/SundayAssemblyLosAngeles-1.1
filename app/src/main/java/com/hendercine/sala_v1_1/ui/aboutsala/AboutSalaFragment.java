@@ -48,6 +48,7 @@ public class AboutSalaFragment extends BaseFragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        mUnbinder.unbind();
     }
 
     @Override
