@@ -518,37 +518,37 @@ public class MainActivity extends BaseActivity {
                                 "This will display LiveBetterFragment",
                                 Toast.LENGTH_SHORT
                         ).show();
-                    } else if (position == R.id.chat_nav) {
-                        Toast.makeText(
-                                getApplicationContext(),
-                                "This will display ChatFragment",
-                                Toast.LENGTH_SHORT
-                        ).show();
+//                    } else if (position == R.id.chat_nav) {
+//                        Toast.makeText(
+//                                getApplicationContext(),
+//                                "This will display ChatFragment",
+//                                Toast.LENGTH_SHORT
+//                        ).show();
                         // TODO: Create intents for Instagram, Facebook and Twitter
-                    } else if (position == R.id.insta_link_nav) {
-                        Toast.makeText(
-                                getApplicationContext(),
-                                "This will open Instagram",
-                                Toast.LENGTH_SHORT
-                        ).show();
-                    } else if (position == R.id.facebook_link_nav) {
-                        Toast.makeText(
-                                getApplicationContext(),
-                                "This will open Facebook",
-                                Toast.LENGTH_SHORT
-                        ).show();
-                    } else if (position == R.id.twitter_link_nav) {
-                        Toast.makeText(
-                                getApplicationContext(),
-                                "This will open Twitter",
-                                Toast.LENGTH_SHORT
-                        ).show();
-                    } else if (position == R.id.site_link_nav) {
-                        Toast.makeText(
-                                getApplicationContext(),
-                                "This will display WebsiteFragment",
-                                Toast.LENGTH_SHORT
-                        ).show();
+//                    } else if (position == R.id.insta_link_nav) {
+//                        Toast.makeText(
+//                                getApplicationContext(),
+//                                "This will open Instagram",
+//                                Toast.LENGTH_SHORT
+//                        ).show();
+//                    } else if (position == R.id.facebook_link_nav) {
+//                        Toast.makeText(
+//                                getApplicationContext(),
+//                                "This will open Facebook",
+//                                Toast.LENGTH_SHORT
+//                        ).show();
+//                    } else if (position == R.id.twitter_link_nav) {
+//                        Toast.makeText(
+//                                getApplicationContext(),
+//                                "This will open Twitter",
+//                                Toast.LENGTH_SHORT
+//                        ).show();
+//                    } else if (position == R.id.site_link_nav) {
+//                        Toast.makeText(
+//                                getApplicationContext(),
+//                                "This will display WebsiteFragment",
+//                                Toast.LENGTH_SHORT
+//                        ).show();
                     } else if (position == R.id.logout_nav) {
                         signOut();
                         return true;
