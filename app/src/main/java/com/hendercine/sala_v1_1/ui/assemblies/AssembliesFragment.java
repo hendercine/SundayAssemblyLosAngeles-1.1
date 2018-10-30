@@ -32,7 +32,6 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * SundayAssemblyLosAngeles-1.1 created by artemis on 9/23/18.
@@ -55,7 +54,6 @@ public class AssembliesFragment extends BaseFragment implements
 
     private AssembliesRVAdapter mAdapter;
     private LinearLayoutManager mLinearLayoutManager;
-    private Unbinder mUnbinder;
 
     @BindView(R.id.assemblies_recycler_view)
     RecyclerView mAssembliesRV;
@@ -67,7 +65,7 @@ public class AssembliesFragment extends BaseFragment implements
     @Nullable
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_assemblies, container, false);
+        View rootView = inflater.inflate(getFragmentLayout(), container, false);
         mUnbinder = ButterKnife.bind(this, rootView);
         mLinearLayoutManager = new LinearLayoutManager(getContext());
 
@@ -87,11 +85,6 @@ public class AssembliesFragment extends BaseFragment implements
         return rootView;
     }
 
-//    @Override
-//    protected int getFragmentLayout() {
-//        return R.layout.fragment_assemblies;
-//    }
-
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -104,6 +97,11 @@ public class AssembliesFragment extends BaseFragment implements
     public void onDestroyView() {
         super.onDestroyView();
         mUnbinder.unbind();
+    }
+
+    @Override
+    protected int getFragmentLayout() {
+        return R.layout.fragment_assemblies;
     }
 
     @Override

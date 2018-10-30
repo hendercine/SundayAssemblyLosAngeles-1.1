@@ -13,7 +13,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.LiveBetterFragment">
+    tools:context=".ui.livebetter.LiveBetterFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/live_better_recycler_view"
