@@ -62,4 +62,8 @@
     <string name="sign_in_canceled_snackbar">Sign in canceled</string>
     <string name="signed_in_success_message">You\'re signed in!</string>
     <string name="no_network">You\'re not connected to a network!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="live_better_event_image">Live Better Event Image</string>
 </resources>
