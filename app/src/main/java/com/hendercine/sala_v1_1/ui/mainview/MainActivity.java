@@ -557,7 +557,7 @@ public class MainActivity extends BaseActivity {
                         Fade fade = new Fade();
                         getSupportFragmentManager()
                                 .beginTransaction()
-                                .add(R.id.content_frame, mFragment)
+                                .replace(R.id.content_frame, mFragment)
 //                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                                 .addToBackStack(null)
                                 .commit();

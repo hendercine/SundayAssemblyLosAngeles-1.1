@@ -93,11 +93,11 @@ public class AssembliesFragment extends BaseFragment implements
         outState.putParcelable(ASSEMBLIES, Parcels.wrap(mAssembliesList));
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        mUnbinder.unbind();
-    }
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        mUnbinder.unbind();
+//    }
 
     @Override
     protected int getFragmentLayout() {
