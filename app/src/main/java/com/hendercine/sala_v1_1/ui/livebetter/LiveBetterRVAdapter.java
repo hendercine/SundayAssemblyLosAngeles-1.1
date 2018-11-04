@@ -80,6 +80,4 @@ public class LiveBetterRVAdapter extends RecyclerView
             ButterKnife.bind(this, itemView);
         }
     }
-
-
 }
