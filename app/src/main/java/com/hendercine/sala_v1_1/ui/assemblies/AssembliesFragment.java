@@ -39,16 +39,11 @@ import butterknife.ButterKnife;
 public class AssembliesFragment extends BaseFragment implements
                                                   SiteServiceReceiver.Listener {
 
-    // Base strings to run through Jsoup
-    private static final String ASSEMBLIES_URL = "http://www.sundayassemblyla.org";
-    private static final String CLASS_NAME = "event-wrap";
-    private static final String LI_ELEMENT = "li";
     private static final String ASSEMBLIES = "assemblies";
     private static final String REC = "rec";
     private static final String POSITION_STATE_KEY = "scroll_position";
 
     private ArrayList<Assembly> mAssembliesList;
-    private ArrayList<Assembly> mAssemblyArrayList;
     private Assembly mAssembly;
     private int mScrollPosition;
 
@@ -93,12 +88,6 @@ public class AssembliesFragment extends BaseFragment implements
         outState.putParcelable(ASSEMBLIES, Parcels.wrap(mAssembliesList));
     }
 
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        mUnbinder.unbind();
-//    }
-
     @Override
     protected int getFragmentLayout() {
         return R.layout.fragment_assemblies;
@@ -109,14 +98,16 @@ public class AssembliesFragment extends BaseFragment implements
         ArrayList<Assembly> assemblies = Parcels.unwrap(resultData.getParcelable(ASSEMBLIES));
 
         mAssembliesList = new ArrayList<>();
-        for (int i = 0; i < assemblies.size(); i++) {
-            mAssembly = new Assembly();
-            mAssembly.setAssemblyDate(assemblies.get(i).getAssemblyDate());
-            mAssembly.setAssemblyTheme(assemblies.get(i).getAssemblyTheme());
-            mAssembly.setAssemblyDescription(assemblies.get(i).getAssemblyDescription());
-            mAssembly.setAssemblyPhotoUrl(assemblies.get(i).getAssemblyPhotoUrl());
+        if (assemblies != null) {
+            for (int i = 0; i < assemblies.size(); i++) {
+                mAssembly = new Assembly();
+                mAssembly.setAssemblyDate(assemblies.get(i).getAssemblyDate());
+                mAssembly.setAssemblyTheme(assemblies.get(i).getAssemblyTheme());
+                mAssembly.setAssemblyDescription(assemblies.get(i).getAssemblyDescription());
+                mAssembly.setAssemblyPhotoUrl(assemblies.get(i).getAssemblyPhotoUrl());
 
-            mAssembliesList.add(mAssembly);
+                mAssembliesList.add(mAssembly);
+            }
         }
 
         if (mAdapter != null) {
