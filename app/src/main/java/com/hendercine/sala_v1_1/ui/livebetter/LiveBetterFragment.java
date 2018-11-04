@@ -30,7 +30,7 @@ import butterknife.Unbinder;
 public class LiveBetterFragment extends BaseFragment {
 
     private LinearLayoutManager mLinearLayoutManager;
-//    private LiveBetterRVAdapter mAdapter;
+    private LiveBetterRVAdapter mAdapter;
     private Unbinder mUnbinder;
 
     @BindView(R.id.live_better_recycler_view)
