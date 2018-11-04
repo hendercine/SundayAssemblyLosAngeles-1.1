@@ -80,13 +80,13 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/live_better_location_contact"
+                app:layout_constraintBottom_toTopOf="@+id/live_better_venue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="Wed, Apr 18 (7:00 PM) - Skeptics' Peña - April"/>
 
             <TextView
-                android:id="@+id/live_better_location_contact"
+                android:id="@+id/live_better_venue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

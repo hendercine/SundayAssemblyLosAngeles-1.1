@@ -22,6 +22,7 @@ import com.hendercine.sala_v1_1.R;
 import com.hendercine.sala_v1_1.ui.base.BaseFragment;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
@@ -30,7 +31,7 @@ import butterknife.Unbinder;
 public class LiveBetterFragment extends BaseFragment {
 
     private LinearLayoutManager mLinearLayoutManager;
-//    private LiveBetterRVAdapter mAdapter;
+    private LiveBetterRVAdapter mAdapter;
     private Unbinder mUnbinder;
 
     @BindView(R.id.live_better_recycler_view)
@@ -45,9 +46,9 @@ public class LiveBetterFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mLinearLayoutManager = new LinearLayoutManager(getContext());
-
-
-        return inflater.inflate(getFragmentLayout(), container, false);
+        View rootView = inflater.inflate(getFragmentLayout(), container, false);
+        mUnbinder = ButterKnife.bind(this, rootView);
+        return rootView;
     }
 
     @Override
