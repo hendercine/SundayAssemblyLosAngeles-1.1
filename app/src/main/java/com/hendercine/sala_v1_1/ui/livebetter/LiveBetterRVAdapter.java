@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.hendercine.sala_v1_1.R;
-import com.hendercine.sala_v1_1.models.BetterEvent;
+import com.hendercine.sala_v1_1.models.Event;
 
 import java.util.ArrayList;
 
@@ -32,10 +32,10 @@ import butterknife.ButterKnife;
 public class LiveBetterRVAdapter extends RecyclerView
                                                  .Adapter<LiveBetterRVAdapter.LiveBetterVH>{
 
-    private ArrayList<BetterEvent> mBetterEvents;
+    private ArrayList<Event> mEvents;
 
-    public LiveBetterRVAdapter(ArrayList<BetterEvent> betterEvents) {
-        mBetterEvents = betterEvents;
+    public LiveBetterRVAdapter(ArrayList<Event> events) {
+        mEvents = events;
     }
 
     @NonNull
@@ -50,9 +50,9 @@ public class LiveBetterRVAdapter extends RecyclerView
     @Override
     public void onBindViewHolder(@NonNull LiveBetterVH holder, int position) {
         Context context = holder.mLiveBetterCV.getContext();
-        BetterEvent betterEvent = mBetterEvents.get(position);
-        holder.mLiveBetterDateTV.setText("betterEvent Date Placeholder text");
-        holder.mLiveBetterVenueTV.setText("betterEvent Venue Placeholder text");
+        Event event = mEvents.get(position);
+        holder.mLiveBetterDateTV.setText("event Date Placeholder text");
+        holder.mLiveBetterVenueTV.setText("event Venue Placeholder text");
         Glide.with(context)
                 .load(R.drawable.sala_logo_grass)
                 .into(holder.mLiveBetterIV);
